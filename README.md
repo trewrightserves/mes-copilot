@@ -6,7 +6,7 @@ Small plants lose thousands of dollars per minute to unplanned downtime, but the
 
 1. **Vision QC** — an operator photographs a part and gets a defect check (pass / flag, defect types, confidence, plain-language note, suggested disposition: use / rework / hold). Labeled demo-grade assist, not a certified inspection.
 2. **Downtime Detective** — an operator describes a stoppage in plain language ("press kept jamming on the left feed, cleared it 3 times then called maint") and gets a structured record in the format a plant actually files: line, equipment, downtime category + cause code, estimated duration, root-cause draft, corrective-action draft. Saved to the event list and counted in the dashboard.
-3. **Ask Production + Shift Handoff** — a supervisor asks plain-English questions ("What stopped Line 2 this week, and what did it cost?") and gets answers whose **numbers are all computed in code** from the production data; the model only phrases them. Plus a one-click shift-handoff summary for the current shift.
+3. **Ask Production + Shift Handoff** — a supervisor asks plain-English questions ("What stopped Line 2 this week, and what did it cost?", or a plain "How is Line 1 doing today?") and gets answers whose **numbers are all computed in code** from the production data; the model only phrases them. Plus a one-click shift-handoff summary for the current shift.
 
 ## The one rule that matters
 
