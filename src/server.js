@@ -165,6 +165,15 @@ function computeFacts(question) {
       facts: [`${list.length} production orders finished late${line ? ` on ${line}` : ''} in the dataset.`, ...lines].join('\n')
     };
   }
+  // Orders currently running
+  if (q.includes('order') && q.includes('running')) {
+    const list = orders.filter(o => o.status === 'running' && (!line || o.work_center_id === line));
+    const lines = list.slice(0, 12).map(o => `- ${o.order_id}: SKU ${o.sku} on ${o.work_center_id}, planned ${o.planned_qty}, produced so far ${o.produced_qty}, scheduled ${o.scheduled_start} to ${o.scheduled_end}.`);
+    return {
+      covered: true, kind: 'orders_running',
+      facts: [`${list.length} production orders are running right now${line ? ` on ${line}` : ''}.`, ...lines].join('\n')
+    };
+  }
   // Quality holds
   if (q.includes('hold') || (q.includes('quality') && q.includes('how many'))) {
     const list = holds.filter(h => inWindow(h.placed_at.slice(0, 10), win) && (!line || (orderById[h.order_id] && orderById[h.order_id].work_center_id === line)));
@@ -179,7 +188,7 @@ function computeFacts(question) {
   // Downtime (default production question family)
   const causeHit = CAUSE_KEYWORDS.find(([, words]) => words.some(w => q.includes(w)));
   const classHit = !causeHit && CLASS_KEYWORDS.find(([, words]) => words.some(w => q.includes(w)));
-  const downtimeish = q.includes('downtime') || q.includes('stop') || q.includes('cost') || q.includes('cause') || causeHit || classHit || q.includes('down');
+  const downtimeish = q.includes('downtime') || q.includes('stop') || q.includes('stopped') || q.includes('cost') || q.includes('cause') || q.includes('issues') || q.includes('problems') || causeHit || classHit || q.includes('down');
   if (downtimeish) {
     let evs = downtimeEvents.filter(e => inWindow(e.start.slice(0, 10), win) && (!line || e.work_center_id === line));
     if (causeHit) evs = evs.filter(e => e.cause_code === causeHit[0]);
@@ -200,10 +209,32 @@ function computeFacts(question) {
     }
     return { covered: true, kind: 'downtime', facts: factLines.join('\n') };
   }
+  // Line status / production overview — general "how are things" questions
+  // ("How is Line 1 doing today?", "How much did we produce today?").
+  const overviewish = line || ['production', 'produce', 'produced', 'plant', 'floor', 'overview', 'status'].some(w => q.includes(w));
+  if (overviewish) {
+    const winOrders = orders.filter(o => inWindow(o.scheduled_start.slice(0, 10), win) && (!line || o.work_center_id === line));
+    const byStatus = winOrders.reduce((acc, o) => { acc[o.status] = (acc[o.status] || 0) + 1; return acc; }, {});
+    const statusBits = Object.entries(byStatus).map(([k, v]) => `${v} ${k}`).join(', ') || 'none scheduled';
+    const planned = winOrders.reduce((s, o) => s + o.planned_qty, 0);
+    const produced = winOrders.reduce((s, o) => s + o.produced_qty, 0);
+    const scrap = winOrders.reduce((s, o) => s + o.scrap_qty, 0);
+    const evs = downtimeEvents.filter(e => inWindow(e.start.slice(0, 10), win) && (!line || e.work_center_id === line));
+    const s = summarizeDowntime(evs);
+    const openHolds = holds.filter(h => !h.released_at && (!line || (orderById[h.order_id] && orderById[h.order_id].work_center_id === line))).length;
+    const factLines = [
+      `Scope: ${line || 'both lines'} ${win.label}.`,
+      `Orders scheduled ${win.label}: ${winOrders.length} (${statusBits}).`,
+      `Produced ${produced} pieces against ${planned} planned; scrap ${scrap}.`,
+      `Downtime ${win.label}: ${s.totalMin} minutes across ${s.count} stoppages, costing ${money(s.totalCost)}.` + (s.ranked.length ? ` Biggest cause: ${s.ranked[0].cause_code} (${s.ranked[0].label}) at ${s.ranked[0].minutes} minutes and ${money(s.ranked[0].cost)}.` : ''),
+      `Quality holds still open right now: ${openHolds}.`
+    ];
+    return { covered: true, kind: 'overview', facts: factLines.join('\n') };
+  }
   return { covered: false, reason: 'No matching production intent.' };
 }
 
-const UNCOVERED_ANSWER = 'The production data on hand does not cover that question. I can answer from the recorded dataset about: downtime by line, cause, and time window (today, this week, this month) with its cost; which orders are late or on hold; the status of a specific order by its PO number; and quality holds placed in a time window. Try one of the suggested questions below.';
+const UNCOVERED_ANSWER = 'The production data on hand does not cover that question. I can answer from the recorded dataset about: how a line (or the whole plant) is doing today, this week, or this month; downtime by line, cause, and time window with its cost; which orders are late, on hold, or running; the status of a specific order by its PO number; and quality holds placed in a time window. Try one of the suggested questions below.';
 
 // ---------------------------------------------------------------------------
 // App
