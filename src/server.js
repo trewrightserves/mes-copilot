@@ -117,16 +117,22 @@ const CLASS_KEYWORDS = [
 
 function summarizeDowntime(events) {
   const totalMin = events.reduce((s, e) => s + e.duration_min, 0);
-  const totalCost = events.reduce((s, e) => s + e.cost_usd, 0);
+  const totalCost = events.reduce((s, e) => s + (Number(e.cost_usd) || 0), 0);
+  let uncostedCount = 0;
   const byCause = {};
   for (const e of events) {
+    if (e.cost_usd == null) uncostedCount += 1;
     const k = e.cause_code;
     byCause[k] = byCause[k] || { cause_code: k, label: P.CAUSE_LABELS[k] || k, events: 0, minutes: 0, cost: 0 };
-    byCause[k].events += 1; byCause[k].minutes += e.duration_min; byCause[k].cost += e.cost_usd;
+    byCause[k].events += 1; byCause[k].minutes += e.duration_min; byCause[k].cost += (Number(e.cost_usd) || 0);
   }
   const ranked = Object.values(byCause).sort((a, b) => b.minutes - a.minutes);
-  return { totalMin, totalCost, count: events.length, ranked };
+  return { totalMin, totalCost, count: events.length, ranked, uncostedCount };
 }
+
+// Appended wherever a summary cost is rendered, so uncosted events (no line
+// known, so no rate could be applied) are explicit instead of silent zeroes.
+const uncostedNote = (s) => s.uncostedCount > 0 ? ` (${s.uncostedCount} event(s) lack a cost estimate)` : '';
 
 function computeFacts(question) {
   const q = String(question || '').toLowerCase();
@@ -198,7 +204,7 @@ function computeFacts(question) {
     const factLines = [
       `Scope: ${scope}.`,
       `Total downtime: ${s.totalMin} minutes across ${s.count} recorded stoppages.`,
-      `Total downtime cost: ${money(s.totalCost)} (computed at ${line ? money(LINE_COST[line]) : '$38.50 on LINE-1 and $24.75 on LINE-2'} per minute).`
+      `Total downtime cost: ${money(s.totalCost)} (computed at ${line ? money(LINE_COST[line]) : '$38.50 on LINE-1 and $24.75 on LINE-2'} per minute)${uncostedNote(s)}.`
     ];
     if (!causeHit && s.ranked.length) {
       factLines.push('Breakdown by cause (minutes, cost, events):');
@@ -226,7 +232,7 @@ function computeFacts(question) {
       `Scope: ${line || 'both lines'} ${win.label}.`,
       `Orders scheduled ${win.label}: ${winOrders.length} (${statusBits}).`,
       `Produced ${produced} pieces against ${planned} planned; scrap ${scrap}.`,
-      `Downtime ${win.label}: ${s.totalMin} minutes across ${s.count} stoppages, costing ${money(s.totalCost)}.` + (s.ranked.length ? ` Biggest cause: ${s.ranked[0].cause_code} (${s.ranked[0].label}) at ${s.ranked[0].minutes} minutes and ${money(s.ranked[0].cost)}.` : ''),
+      `Downtime ${win.label}: ${s.totalMin} minutes across ${s.count} stoppages, costing ${money(s.totalCost)}${uncostedNote(s)}.` + (s.ranked.length ? ` Biggest cause: ${s.ranked[0].cause_code} (${s.ranked[0].label}) at ${s.ranked[0].minutes} minutes and ${money(s.ranked[0].cost)}.` : ''),
       `Quality holds still open right now: ${openHolds}.`
     ];
     return { covered: true, kind: 'overview', facts: factLines.join('\n') };
@@ -279,7 +285,7 @@ app.get('/api/snapshot', (req, res) => {
       produced_qty: todaysOrders.reduce((s, o) => s + o.produced_qty, 0),
       list: todaysOrders.map(o => ({ order_id: o.order_id, sku: o.sku, line: o.work_center_id, status: o.status, planned_qty: o.planned_qty, produced_qty: o.produced_qty }))
     },
-    downtime: { events: dt.count, minutes: dt.totalMin, cost_usd: Math.round(dt.totalCost * 100) / 100, by_line: perLine, top_causes: dt.ranked.slice(0, 3) },
+    downtime: { events: dt.count, minutes: dt.totalMin, cost_usd: Math.round(dt.totalCost * 100) / 100, uncosted_events: dt.uncostedCount, by_line: perLine, top_causes: dt.ranked.slice(0, 3) },
     holds: { placed_today: holdsToday.length, open_now: openHolds.length, open: openHolds.map(h => ({ hold_id: h.hold_id, order_id: h.order_id, qty_held: h.qty_held, reason: h.reason })) },
     inspections: { today: inspToday.length, failed_qty: inspToday.reduce((s, i) => s + i.failed_qty, 0) },
     mode: llm.isStub() ? 'stub' : 'live'
@@ -288,7 +294,7 @@ app.get('/api/snapshot', (req, res) => {
 
 // --- Flow B: Downtime Detective -------------------------------------------
 app.post('/api/downtime', async (req, res) => {
-  const description = (req.body && req.body.description || '').trim();
+  const description = (req.body && req.body.description || '').trim().slice(0, 500);
   if (!description) return res.status(400).json({ error: 'Describe the stoppage first — a sentence is enough.' });
   try {
     const draft = await llm.chatJSON([
@@ -296,7 +302,7 @@ app.post('/api/downtime', async (req, res) => {
       { role: 'user', content: P.downtimeUser(description, { currentLine: req.body.line || null, shift: req.body.shift || null }) }
     ]);
     const line = draft.line && LINE_COST[draft.line] ? draft.line : (req.body.line && LINE_COST[req.body.line] ? req.body.line : null);
-    const duration = Math.max(1, Math.round(Number(draft.estimated_duration_min) || 30));
+    const duration = Math.min(480, Math.max(1, Math.round(Number(draft.estimated_duration_min) || 30)));
     const record = {
       event_id: `DT-USER-${String(userEvents.length + 1).padStart(4, '0')}`,
       work_center_id: line,
@@ -371,7 +377,7 @@ app.post('/api/handoff', async (req, res) => {
     `Shift: ${si.shift} on ${line} (${si.date}), lead ${si.lead_operator_id}.`,
     `Orders on ${line} today: ${dayOrders.length} scheduled; ${dayOrders.filter(o => o.status === 'complete').length} complete, ${dayOrders.filter(o => o.status === 'running').length} running, ${dayOrders.filter(o => o.status === 'on_hold').length} on hold, ${dayOrders.filter(o => o.status === 'late').length} late.`,
     `Produced so far on those orders: ${dayOrders.reduce((a, o) => a + o.produced_qty, 0)} pieces against ${dayOrders.reduce((a, o) => a + o.planned_qty, 0)} planned; scrap ${dayOrders.reduce((a, o) => a + o.scrap_qty, 0)}.`,
-    `Downtime this shift: ${s.totalMin} minutes across ${s.count} stoppages, costing ${money(s.totalCost)}.` + (s.ranked.length ? ` Biggest: ${s.ranked[0].cause_code} (${s.ranked[0].label}) at ${s.ranked[0].minutes} minutes and ${money(s.ranked[0].cost)}.` : ''),
+    `Downtime this shift: ${s.totalMin} minutes across ${s.count} stoppages, costing ${money(s.totalCost)}${uncostedNote(s)}.` + (s.ranked.length ? ` Biggest: ${s.ranked[0].cause_code} (${s.ranked[0].label}) at ${s.ranked[0].minutes} minutes and ${money(s.ranked[0].cost)}.` : ''),
     `Quality holds touching ${line} today: ${lineHolds.length} placed; ${openLineHolds.length} still open` + (openLineHolds.length ? ` (${openLineHolds.map(h => `${h.hold_id}, ${h.qty_held} pcs`).join('; ')})` : '') + '.',
     `${backlog} stoppage(s) this shift still have no root cause recorded — the incoming lead should chase those first.`
   ].join('\n');

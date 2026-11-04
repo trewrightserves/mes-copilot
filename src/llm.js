@@ -170,12 +170,10 @@ function stubVision(messages, opts) {
     }
     return { _stub: true, verdict: 'flag', defects: d.defects, confidence: 0.88, note: d.note, disposition: d.disposition, demo_grade: true };
   }
-  // Unknown / uploaded image in stub mode: deterministic but honest.
-  const h = hashInt(seedStr) % 3;
-  if (h === 0) {
-    return { _stub: true, verdict: 'flag', defects: ['burr'], confidence: 0.41, note: 'Stub mode cannot truly inspect an uploaded photo — this verdict is a deterministic mock. Connect META_API_KEY for a real vision check.', disposition: 'rework', demo_grade: true };
-  }
-  return { _stub: true, verdict: 'pass', defects: [], confidence: 0.44, note: 'Stub mode cannot truly inspect an uploaded photo — this verdict is a deterministic mock. Connect META_API_KEY for a real vision check.', disposition: 'use', demo_grade: true };
+  // Unknown / uploaded image in demo mode: never pass an uninspected upload.
+  // Custom photos are not visually analyzed in stub/demo mode, so hold the
+  // part (confidence 0) and point at the bundled samples for the demo.
+  return { _stub: true, verdict: 'flag', defects: [], confidence: 0, note: 'Custom photos are not visually analyzed in demo mode — no inspection was performed, so this upload is held rather than passed. Select one of the bundled samples for the deterministic inspection demo, or connect META_API_KEY for a real vision check.', disposition: 'hold', demo_grade: true };
 }
 
 // ---------------------------------------------------------------------------
