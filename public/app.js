@@ -31,8 +31,8 @@ async function loadSnapshot() {
   $('stDownCost').textContent = money(s.downtime.cost_usd);
   $('stHolds').textContent = s.holds.open_now;
   $('snapLines').textContent =
-    `LINE-1: ${s.downtime.by_line['LINE-1'].minutes} min down (${money(s.downtime.by_line['LINE-1'].cost_usd)}) · ` +
-    `LINE-2: ${s.downtime.by_line['LINE-2'].minutes} min down (${money(s.downtime.by_line['LINE-2'].cost_usd)}) · ` +
+    `LINE-1: ${s.downtime.by_line['LINE-1'].minutes} min down (${money(s.downtime.by_line['LINE-1'].cost)}) · ` +
+    `LINE-2: ${s.downtime.by_line['LINE-2'].minutes} min down (${money(s.downtime.by_line['LINE-2'].cost)}) · ` +
     `${s.holds.placed_today} hold(s) placed today · ${s.inspections.today} inspections today, ${s.inspections.failed_qty} pieces failed`;
   $('snapTopCauses').innerHTML = s.downtime.top_causes.map(c =>
     `<span class="chip" style="cursor:default">${esc(c.cause_code)} ${esc(c.label)} — ${c.minutes} min · ${money(c.cost)}</span>`).join('');
@@ -76,6 +76,7 @@ $('qcFile').addEventListener('change', (ev) => {
   selectedSample = null;
   const reader = new FileReader();
   reader.onload = () => runQc({ imageBase64: reader.result, sku: 'BRK-2041' });
+  reader.onerror = () => { $('qcResult').innerHTML = '<div class="result"><span class="err">Could not read that photo file — try a different image.</span></div>'; };
   reader.readAsDataURL(f);
 });
 
@@ -103,7 +104,7 @@ $('dtGo').addEventListener('click', async () => {
         <dt>Corrective action (draft)</dt><dd>${esc(record.corrective_action)}</dd>
       </dl>
       <p class="muted">Saved to the event list — it is already counted in today's snapshot above. Root cause and action are drafts for the lead to confirm.</p></div>`;
-    loadSnapshot(); loadRecent();
+    loadSnapshot().catch(() => {}); loadRecent();
   } catch (e) {
     $('dtResult').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`;
   } finally { $('dtGo').disabled = false; }
@@ -125,7 +126,10 @@ async function loadChips() {
 }
 async function ask() {
   const question = $('askText').value.trim();
-  if (!question) return;
+  if (!question) {
+    $('askResult').innerHTML = '<div class="result"><span class="err">Type a question first, or tap one of the suggestions above.</span></div>';
+    return;
+  }
   $('askGo').disabled = true;
   $('askResult').innerHTML = '<div class="result">Computing from the production data…</div>';
   try {
@@ -133,8 +137,10 @@ async function ask() {
     $('askResult').innerHTML = `<div class="result">
       <p style="margin-top:0">${esc(r.answer)}</p>
       ${r.covered ? `<details><summary class="muted">Computed facts behind this answer</summary><div class="facts">${esc(r.facts)}</div></details>` : ''}
+      ${!r.covered && r.suggestions && r.suggestions.length ? `<div class="chips" id="askSuggestions">${r.suggestions.map(q => `<button class="chip">${esc(q)}</button>`).join('')}</div>` : ''}
       ${r.mode === 'stub' ? '<p class="muted">Stub mode: phrasing is a deterministic mock; the facts are real computations over the demo dataset.</p>' : ''}
     </div>`;
+    document.querySelectorAll('#askSuggestions .chip').forEach(el => el.addEventListener('click', () => { $('askText').value = el.textContent; ask(); }));
   } catch (e) {
     $('askResult').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`;
   } finally { $('askGo').disabled = false; }
@@ -158,6 +164,6 @@ $('handoffGo').addEventListener('click', async () => {
 // ---------- boot ----------
 loadHealth();
 loadSnapshot().catch(e => { $('snapStats').innerHTML = `<span class="err">${esc(e.message)}</span>`; });
-loadSamples().catch(() => {});
-loadChips().catch(() => {});
+loadSamples().catch(() => { $('sampleGrid').innerHTML = '<p class="err">Could not load the sample photos — is the server running?</p>'; });
+loadChips().catch(() => { $('chips').innerHTML = '<span class="err">Could not load the suggested questions — is the server running?</span>'; });
 loadRecent();
