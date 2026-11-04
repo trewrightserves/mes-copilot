@@ -1,0 +1,402 @@
+[
+  {
+    "hold_id": "QH-2026-0092",
+    "order_id": "PO-2026-10403",
+    "qty_held": 186,
+    "reason": "burr above spec on PLT-0935, lot around 09:01",
+    "placed_at": "2026-10-05T09:01:00",
+    "disposition": "rework",
+    "released_at": "2026-10-05T10:22:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0150",
+    "order_id": "PO-2026-10445",
+    "qty_held": 70,
+    "reason": "finish discolor above spec on ASM-3300, lot around 08:00",
+    "placed_at": "2026-10-07T08:36:00",
+    "disposition": "release",
+    "released_at": "2026-10-07T10:21:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0093",
+    "order_id": "PO-2026-10454",
+    "qty_held": 144,
+    "reason": "hole offcenter above spec on BRK-2041, lot around 21:37",
+    "placed_at": "2026-10-07T21:37:00",
+    "disposition": "rework",
+    "released_at": "2026-10-07T23:49:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0096",
+    "order_id": "PO-2026-10471",
+    "qty_held": 305,
+    "reason": "dent above spec on HSG-1180, lot around 14:59",
+    "placed_at": "2026-10-08T14:59:00",
+    "disposition": "rework",
+    "released_at": "2026-10-08T16:47:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0147",
+    "order_id": "PO-2026-10489",
+    "qty_held": 139,
+    "reason": "hole offcenter above spec on BRK-2041, lot around 15:00",
+    "placed_at": "2026-10-09T15:57:00",
+    "disposition": "rework",
+    "released_at": "2026-10-09T16:42:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0097",
+    "order_id": "PO-2026-10482",
+    "qty_held": 308,
+    "reason": "hole missing above spec on ASM-3315, lot around 20:47",
+    "placed_at": "2026-10-09T20:47:00",
+    "disposition": "release",
+    "released_at": "2026-10-09T21:56:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0168",
+    "order_id": "PO-2026-10487",
+    "qty_held": 109,
+    "reason": "burr above spec on ASM-3300, lot around 21:00",
+    "placed_at": "2026-10-09T21:22:00",
+    "disposition": "rework",
+    "released_at": "2026-10-09T22:59:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0148",
+    "order_id": "PO-2026-10527",
+    "qty_held": 68,
+    "reason": "burr above spec on ASM-3315, lot around 16:00",
+    "placed_at": "2026-10-11T16:42:00",
+    "disposition": "release",
+    "released_at": "2026-10-11T17:08:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0099",
+    "order_id": "PO-2026-10536",
+    "qty_held": 299,
+    "reason": "bend angle off above spec on PLT-0935, lot around 23:03",
+    "placed_at": "2026-10-11T23:03:00",
+    "disposition": "release",
+    "released_at": "2026-10-11T23:59:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0165",
+    "order_id": "PO-2026-10551",
+    "qty_held": 203,
+    "reason": "finish discolor above spec on ASM-3300, lot around 13:00",
+    "placed_at": "2026-10-12T13:29:00",
+    "disposition": "release",
+    "released_at": "2026-10-12T14:41:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0101",
+    "order_id": "PO-2026-10550",
+    "qty_held": 246,
+    "reason": "hole missing above spec on PLT-0935, lot around 19:47",
+    "placed_at": "2026-10-12T19:47:00",
+    "disposition": "rework",
+    "released_at": "2026-10-12T21:46:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0160",
+    "order_id": "PO-2026-10578",
+    "qty_held": 125,
+    "reason": "burr above spec on ASM-3315, lot around 08:00",
+    "placed_at": "2026-10-13T08:58:00",
+    "disposition": "rework",
+    "released_at": "2026-10-13T11:59:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0104",
+    "order_id": "PO-2026-10565",
+    "qty_held": 262,
+    "reason": "surface scratch above spec on ASM-3315, lot around 11:31",
+    "placed_at": "2026-10-13T11:31:00",
+    "disposition": "release",
+    "released_at": "2026-10-13T12:27:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0155",
+    "order_id": "PO-2026-10585",
+    "qty_held": 281,
+    "reason": "dent above spec on ASM-3300, lot around 14:00",
+    "placed_at": "2026-10-13T14:46:00",
+    "disposition": "scrap",
+    "released_at": "2026-10-13T17:26:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0107",
+    "order_id": "PO-2026-10578",
+    "qty_held": 166,
+    "reason": "hole offcenter above spec on ASM-3315, lot around 14:48",
+    "placed_at": "2026-10-13T14:48:00",
+    "disposition": "release",
+    "released_at": "2026-10-13T16:45:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0163",
+    "order_id": "PO-2026-10616",
+    "qty_held": 159,
+    "reason": "burr above spec on ASM-3315, lot around 07:00",
+    "placed_at": "2026-10-15T07:12:00",
+    "disposition": "rework",
+    "released_at": "2026-10-15T10:40:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0110",
+    "order_id": "PO-2026-10613",
+    "qty_held": 50,
+    "reason": "surface scratch above spec on ASM-3315, lot around 21:19",
+    "placed_at": "2026-10-15T21:19:00",
+    "disposition": "rework",
+    "released_at": "2026-10-15T23:50:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0158",
+    "order_id": "PO-2026-10637",
+    "qty_held": 104,
+    "reason": "burr above spec on ASM-3300, lot around 09:00",
+    "placed_at": "2026-10-16T09:32:00",
+    "disposition": "rework",
+    "released_at": "2026-10-16T12:28:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0113",
+    "order_id": "PO-2026-10686",
+    "qty_held": 258,
+    "reason": "crack above spec on ASM-3300, lot around 06:21",
+    "placed_at": "2026-10-18T06:21:00",
+    "disposition": "rework",
+    "released_at": "2026-10-18T09:58:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0117",
+    "order_id": "PO-2026-10698",
+    "qty_held": 252,
+    "reason": "crack above spec on BRK-2041, lot around 18:03",
+    "placed_at": "2026-10-19T18:03:00",
+    "disposition": "rework",
+    "released_at": "2026-10-19T19:48:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0114",
+    "order_id": "PO-2026-10687",
+    "qty_held": 265,
+    "reason": "bend angle off above spec on BRK-2041, lot around 23:01",
+    "placed_at": "2026-10-19T23:01:00",
+    "disposition": "rework",
+    "released_at": "2026-10-19T23:52:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0162",
+    "order_id": "PO-2026-10708",
+    "qty_held": 88,
+    "reason": "surface scratch above spec on ASM-3300, lot around 21:00",
+    "placed_at": "2026-10-20T21:29:00",
+    "disposition": "scrap",
+    "released_at": "2026-10-20T23:50:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0119",
+    "order_id": "PO-2026-10735",
+    "qty_held": 318,
+    "reason": "burr above spec on BRK-2041, lot around 06:14",
+    "placed_at": "2026-10-21T06:14:00",
+    "disposition": "rework",
+    "released_at": "2026-10-21T08:50:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0161",
+    "order_id": "PO-2026-10733",
+    "qty_held": 133,
+    "reason": "bend angle off above spec on ASM-3315, lot around 15:00",
+    "placed_at": "2026-10-21T15:01:00",
+    "disposition": "release",
+    "released_at": "2026-10-21T17:43:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0124",
+    "order_id": "PO-2026-10766",
+    "qty_held": 195,
+    "reason": "surface scratch above spec on BRK-2041, lot around 06:22",
+    "placed_at": "2026-10-22T06:22:00",
+    "disposition": "rework",
+    "released_at": "2026-10-22T07:13:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0122",
+    "order_id": "PO-2026-10752",
+    "qty_held": 98,
+    "reason": "bend angle off above spec on ASM-3300, lot around 09:54",
+    "placed_at": "2026-10-22T09:54:00",
+    "disposition": "rework",
+    "released_at": "2026-10-22T11:23:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0128",
+    "order_id": "PO-2026-10781",
+    "qty_held": 265,
+    "reason": "burr above spec on ASM-3300, lot around 19:35",
+    "placed_at": "2026-10-23T19:35:00",
+    "disposition": "scrap",
+    "released_at": "2026-10-23T21:53:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0125",
+    "order_id": "PO-2026-10779",
+    "qty_held": 43,
+    "reason": "burr above spec on ASM-3300, lot around 19:52",
+    "placed_at": "2026-10-23T19:52:00",
+    "disposition": "rework",
+    "released_at": "2026-10-23T21:35:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0129",
+    "order_id": "PO-2026-10789",
+    "qty_held": 221,
+    "reason": "burr above spec on BRK-2041, lot around 12:48",
+    "placed_at": "2026-10-24T12:48:00",
+    "disposition": "rework",
+    "released_at": "2026-10-24T13:00:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0130",
+    "order_id": "PO-2026-10819",
+    "qty_held": 81,
+    "reason": "bend angle off above spec on PLT-0935, lot around 22:53",
+    "placed_at": "2026-10-25T22:53:00",
+    "disposition": "release",
+    "released_at": "2026-10-25T23:45:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0134",
+    "order_id": "PO-2026-10840",
+    "qty_held": 309,
+    "reason": "burr above spec on PLT-0935, lot around 15:43",
+    "placed_at": "2026-10-26T15:43:00",
+    "disposition": "rework",
+    "released_at": "2026-10-26T16:05:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0131",
+    "order_id": "PO-2026-10835",
+    "qty_held": 306,
+    "reason": "finish discolor above spec on ASM-3315, lot around 22:23",
+    "placed_at": "2026-10-26T22:23:00",
+    "disposition": "release",
+    "released_at": "2026-10-26T23:36:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0145",
+    "order_id": "PO-2026-10846",
+    "qty_held": 62,
+    "reason": "crack above spec on HSG-1180, lot around 11:00",
+    "placed_at": "2026-10-27T11:29:00",
+    "disposition": "release",
+    "released_at": "2026-10-27T14:03:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0136",
+    "order_id": "PO-2026-10854",
+    "qty_held": 44,
+    "reason": "bend angle off above spec on BRK-2041, lot around 23:05",
+    "placed_at": "2026-10-27T23:05:00",
+    "disposition": "scrap",
+    "released_at": "2026-10-27T23:42:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0152",
+    "order_id": "PO-2026-10887",
+    "qty_held": 271,
+    "reason": "dent above spec on ASM-3300, lot around 15:00",
+    "placed_at": "2026-10-29T15:27:00",
+    "disposition": "release",
+    "released_at": "2026-10-29T16:29:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0149",
+    "order_id": "PO-2026-10926",
+    "qty_held": 77,
+    "reason": "hole offcenter above spec on PLT-0935, lot around 12:00",
+    "placed_at": "2026-10-31T12:57:00",
+    "disposition": "scrap",
+    "released_at": "2026-10-31T15:56:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0139",
+    "order_id": "PO-2026-10926",
+    "qty_held": 237,
+    "reason": "crack above spec on PLT-0935, lot around 17:03",
+    "placed_at": "2026-10-31T17:03:00",
+    "disposition": "rework",
+    "released_at": "2026-10-31T20:07:00",
+    "released_by": "OP-13"
+  },
+  {
+    "hold_id": "QH-2026-0142",
+    "order_id": "PO-2026-10977",
+    "qty_held": 62,
+    "reason": "dent above spec on HSG-1180, lot around 11:25",
+    "placed_at": "2026-11-02T11:25:00",
+    "disposition": null,
+    "released_at": null,
+    "released_by": null
+  },
+  {
+    "hold_id": "QH-2026-0141",
+    "order_id": "PO-2026-10976",
+    "qty_held": 305,
+    "reason": "burr above spec on ASM-3300, lot around 16:04",
+    "placed_at": "2026-11-02T16:04:00",
+    "disposition": null,
+    "released_at": null,
+    "released_by": null
+  },
+  {
+    "hold_id": "QH-2026-0140",
+    "order_id": "PO-2026-10968",
+    "qty_held": 233,
+    "reason": "surface scratch above spec on PLT-0935, lot around 17:31",
+    "placed_at": "2026-11-02T17:31:00",
+    "disposition": "rework",
+    "released_at": "2026-11-02T18:07:00",
+    "released_by": "OP-13"
+  }
+]

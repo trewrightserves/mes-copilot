@@ -1,0 +1,42 @@
+[
+  {
+    "sku": "BRK-2041",
+    "name": "Mounting Bracket, 4-hole",
+    "work_center_id": "LINE-1",
+    "standard_cycle_sec": 16.4,
+    "material": "CRS coil, 11 ga",
+    "lot_size": 500
+  },
+  {
+    "sku": "HSG-1180",
+    "name": "Sensor Housing, stamped",
+    "work_center_id": "LINE-1",
+    "standard_cycle_sec": 21,
+    "material": "CRS coil, 14 ga",
+    "lot_size": 400
+  },
+  {
+    "sku": "PLT-0935",
+    "name": "Cover Plate, 6x4",
+    "work_center_id": "LINE-1",
+    "standard_cycle_sec": 12.8,
+    "material": "Aluminum sheet, 0.125 in",
+    "lot_size": 600
+  },
+  {
+    "sku": "ASM-3300",
+    "name": "Bracket Assembly, finished",
+    "work_center_id": "LINE-2",
+    "standard_cycle_sec": 45,
+    "material": "BRK-2041 + hardware kit",
+    "lot_size": 250
+  },
+  {
+    "sku": "ASM-3315",
+    "name": "Housing Assembly, finished",
+    "work_center_id": "LINE-2",
+    "standard_cycle_sec": 52.5,
+    "material": "HSG-1180 + sensor kit",
+    "lot_size": 200
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "enterprise": {
+    "id": "ENT-01",
+    "name": "Riverbend Fabrication LLC"
+  },
+  "site": {
+    "id": "SITE-01",
+    "name": "Plant 1 — Riverbend",
+    "enterprise_id": "ENT-01"
+  },
+  "areas": [
+    {
+      "id": "AREA-FAB",
+      "name": "Fabrication",
+      "site_id": "SITE-01"
+    },
+    {
+      "id": "AREA-ASM",
+      "name": "Assembly & Pack",
+      "site_id": "SITE-01"
+    }
+  ],
+  "work_centers": [
+    {
+      "id": "LINE-1",
+      "name": "Press & Form Line 1",
+      "area_id": "AREA-FAB",
+      "downtime_cost_per_min": 38.5,
+      "standard_rate_per_hour": 220
+    },
+    {
+      "id": "LINE-2",
+      "name": "Assembly Line 2",
+      "area_id": "AREA-ASM",
+      "downtime_cost_per_min": 24.75,
+      "standard_rate_per_hour": 340
+    }
+  ],
+  "work_units": [
+    {
+      "id": "PRESS-101",
+      "name": "Stamping Press 101",
+      "work_center_id": "LINE-1",
+      "type": "press"
+    },
+    {
+      "id": "FORM-102",
+      "name": "Form Station 102",
+      "work_center_id": "LINE-1",
+      "type": "form"
+    },
+    {
+      "id": "QC-103",
+      "name": "Inspection Bench 103",
+      "work_center_id": "LINE-1",
+      "type": "inspection"
+    },
+    {
+      "id": "ASM-201",
+      "name": "Assembly Station 201",
+      "work_center_id": "LINE-2",
+      "type": "assembly"
+    },
+    {
+      "id": "TORQ-202",
+      "name": "Torque Station 202",
+      "work_center_id": "LINE-2",
+      "type": "torque"
+    },
+    {
+      "id": "PACK-203",
+      "name": "Pack-Out 203",
+      "work_center_id": "LINE-2",
+      "type": "pack"
+    }
+  ]
+}

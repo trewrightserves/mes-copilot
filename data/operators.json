@@ -1,0 +1,151 @@
+[
+  {
+    "operator_id": "OP-01",
+    "name": "Marcus Reed",
+    "role": "lead",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S1",
+    "certifications": [
+      "press-op",
+      "forklift"
+    ]
+  },
+  {
+    "operator_id": "OP-02",
+    "name": "Priya Nair",
+    "role": "operator",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S1",
+    "certifications": [
+      "press-op"
+    ]
+  },
+  {
+    "operator_id": "OP-03",
+    "name": "Dana Whitfield",
+    "role": "lead",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S2",
+    "certifications": [
+      "press-op",
+      "setup"
+    ]
+  },
+  {
+    "operator_id": "OP-04",
+    "name": "Tommy Kowalski",
+    "role": "operator",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S2",
+    "certifications": [
+      "press-op"
+    ]
+  },
+  {
+    "operator_id": "OP-05",
+    "name": "Renee Baptiste",
+    "role": "lead",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S3",
+    "certifications": [
+      "press-op",
+      "setup"
+    ]
+  },
+  {
+    "operator_id": "OP-06",
+    "name": "Sam Delgado",
+    "role": "operator",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S3",
+    "certifications": [
+      "forklift"
+    ]
+  },
+  {
+    "operator_id": "OP-07",
+    "name": "Grace Lindqvist",
+    "role": "lead",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S1",
+    "certifications": [
+      "assembly",
+      "torque-audit"
+    ]
+  },
+  {
+    "operator_id": "OP-08",
+    "name": "Andre Boateng",
+    "role": "operator",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S1",
+    "certifications": [
+      "assembly"
+    ]
+  },
+  {
+    "operator_id": "OP-09",
+    "name": "Lucia Ferreira",
+    "role": "lead",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S2",
+    "certifications": [
+      "assembly",
+      "setup"
+    ]
+  },
+  {
+    "operator_id": "OP-10",
+    "name": "Ben Okafor",
+    "role": "operator",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S2",
+    "certifications": [
+      "assembly"
+    ]
+  },
+  {
+    "operator_id": "OP-11",
+    "name": "Hannah Weiss",
+    "role": "lead",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S3",
+    "certifications": [
+      "assembly",
+      "torque-audit"
+    ]
+  },
+  {
+    "operator_id": "OP-12",
+    "name": "Jorge Medina",
+    "role": "operator",
+    "home_work_center_id": "LINE-2",
+    "shift_pattern": "S3",
+    "certifications": [
+      "assembly",
+      "forklift"
+    ]
+  },
+  {
+    "operator_id": "OP-13",
+    "name": "Carol Tanaka",
+    "role": "quality tech",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S1",
+    "certifications": [
+      "cmm",
+      "visual-inspection"
+    ]
+  },
+  {
+    "operator_id": "OP-14",
+    "name": "Earl Pruitt",
+    "role": "maintenance tech",
+    "home_work_center_id": "LINE-1",
+    "shift_pattern": "S2",
+    "certifications": [
+      "electrical",
+      "hydraulics"
+    ]
+  }
+]

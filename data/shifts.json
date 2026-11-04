@@ -1,0 +1,1622 @@
+[
+  {
+    "shift_instance_id": "2026-10-05-S1-LINE-1",
+    "date": "2026-10-05",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-05-S2-LINE-1",
+    "date": "2026-10-05",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-05-S3-LINE-1",
+    "date": "2026-10-05",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-05-S1-LINE-2",
+    "date": "2026-10-05",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-05-S2-LINE-2",
+    "date": "2026-10-05",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-05-S3-LINE-2",
+    "date": "2026-10-05",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S1-LINE-1",
+    "date": "2026-10-06",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S2-LINE-1",
+    "date": "2026-10-06",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S3-LINE-1",
+    "date": "2026-10-06",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S1-LINE-2",
+    "date": "2026-10-06",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S2-LINE-2",
+    "date": "2026-10-06",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-06-S3-LINE-2",
+    "date": "2026-10-06",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S1-LINE-1",
+    "date": "2026-10-07",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S2-LINE-1",
+    "date": "2026-10-07",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S3-LINE-1",
+    "date": "2026-10-07",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S1-LINE-2",
+    "date": "2026-10-07",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S2-LINE-2",
+    "date": "2026-10-07",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-07-S3-LINE-2",
+    "date": "2026-10-07",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S1-LINE-1",
+    "date": "2026-10-08",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S2-LINE-1",
+    "date": "2026-10-08",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S3-LINE-1",
+    "date": "2026-10-08",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S1-LINE-2",
+    "date": "2026-10-08",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S2-LINE-2",
+    "date": "2026-10-08",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-08-S3-LINE-2",
+    "date": "2026-10-08",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S1-LINE-1",
+    "date": "2026-10-09",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S2-LINE-1",
+    "date": "2026-10-09",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S3-LINE-1",
+    "date": "2026-10-09",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S1-LINE-2",
+    "date": "2026-10-09",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S2-LINE-2",
+    "date": "2026-10-09",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-09-S3-LINE-2",
+    "date": "2026-10-09",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S1-LINE-1",
+    "date": "2026-10-10",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S2-LINE-1",
+    "date": "2026-10-10",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S3-LINE-1",
+    "date": "2026-10-10",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S1-LINE-2",
+    "date": "2026-10-10",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S2-LINE-2",
+    "date": "2026-10-10",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-10-S3-LINE-2",
+    "date": "2026-10-10",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S1-LINE-1",
+    "date": "2026-10-11",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S2-LINE-1",
+    "date": "2026-10-11",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S3-LINE-1",
+    "date": "2026-10-11",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S1-LINE-2",
+    "date": "2026-10-11",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S2-LINE-2",
+    "date": "2026-10-11",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-11-S3-LINE-2",
+    "date": "2026-10-11",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S1-LINE-1",
+    "date": "2026-10-12",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S2-LINE-1",
+    "date": "2026-10-12",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S3-LINE-1",
+    "date": "2026-10-12",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S1-LINE-2",
+    "date": "2026-10-12",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S2-LINE-2",
+    "date": "2026-10-12",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-12-S3-LINE-2",
+    "date": "2026-10-12",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S1-LINE-1",
+    "date": "2026-10-13",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S2-LINE-1",
+    "date": "2026-10-13",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S3-LINE-1",
+    "date": "2026-10-13",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S1-LINE-2",
+    "date": "2026-10-13",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S2-LINE-2",
+    "date": "2026-10-13",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-13-S3-LINE-2",
+    "date": "2026-10-13",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S1-LINE-1",
+    "date": "2026-10-14",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S2-LINE-1",
+    "date": "2026-10-14",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S3-LINE-1",
+    "date": "2026-10-14",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S1-LINE-2",
+    "date": "2026-10-14",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S2-LINE-2",
+    "date": "2026-10-14",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-14-S3-LINE-2",
+    "date": "2026-10-14",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S1-LINE-1",
+    "date": "2026-10-15",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S2-LINE-1",
+    "date": "2026-10-15",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S3-LINE-1",
+    "date": "2026-10-15",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S1-LINE-2",
+    "date": "2026-10-15",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S2-LINE-2",
+    "date": "2026-10-15",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-15-S3-LINE-2",
+    "date": "2026-10-15",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S1-LINE-1",
+    "date": "2026-10-16",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S2-LINE-1",
+    "date": "2026-10-16",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S3-LINE-1",
+    "date": "2026-10-16",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S1-LINE-2",
+    "date": "2026-10-16",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S2-LINE-2",
+    "date": "2026-10-16",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-16-S3-LINE-2",
+    "date": "2026-10-16",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S1-LINE-1",
+    "date": "2026-10-17",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S2-LINE-1",
+    "date": "2026-10-17",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S3-LINE-1",
+    "date": "2026-10-17",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S1-LINE-2",
+    "date": "2026-10-17",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S2-LINE-2",
+    "date": "2026-10-17",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-17-S3-LINE-2",
+    "date": "2026-10-17",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S1-LINE-1",
+    "date": "2026-10-18",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S2-LINE-1",
+    "date": "2026-10-18",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S3-LINE-1",
+    "date": "2026-10-18",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S1-LINE-2",
+    "date": "2026-10-18",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S2-LINE-2",
+    "date": "2026-10-18",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-18-S3-LINE-2",
+    "date": "2026-10-18",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S1-LINE-1",
+    "date": "2026-10-19",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S2-LINE-1",
+    "date": "2026-10-19",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S3-LINE-1",
+    "date": "2026-10-19",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S1-LINE-2",
+    "date": "2026-10-19",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S2-LINE-2",
+    "date": "2026-10-19",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-19-S3-LINE-2",
+    "date": "2026-10-19",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S1-LINE-1",
+    "date": "2026-10-20",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S2-LINE-1",
+    "date": "2026-10-20",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S3-LINE-1",
+    "date": "2026-10-20",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S1-LINE-2",
+    "date": "2026-10-20",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S2-LINE-2",
+    "date": "2026-10-20",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-20-S3-LINE-2",
+    "date": "2026-10-20",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S1-LINE-1",
+    "date": "2026-10-21",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S2-LINE-1",
+    "date": "2026-10-21",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S3-LINE-1",
+    "date": "2026-10-21",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S1-LINE-2",
+    "date": "2026-10-21",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S2-LINE-2",
+    "date": "2026-10-21",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-21-S3-LINE-2",
+    "date": "2026-10-21",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S1-LINE-1",
+    "date": "2026-10-22",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S2-LINE-1",
+    "date": "2026-10-22",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S3-LINE-1",
+    "date": "2026-10-22",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S1-LINE-2",
+    "date": "2026-10-22",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S2-LINE-2",
+    "date": "2026-10-22",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-22-S3-LINE-2",
+    "date": "2026-10-22",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S1-LINE-1",
+    "date": "2026-10-23",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S2-LINE-1",
+    "date": "2026-10-23",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S3-LINE-1",
+    "date": "2026-10-23",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S1-LINE-2",
+    "date": "2026-10-23",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S2-LINE-2",
+    "date": "2026-10-23",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-23-S3-LINE-2",
+    "date": "2026-10-23",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S1-LINE-1",
+    "date": "2026-10-24",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S2-LINE-1",
+    "date": "2026-10-24",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S3-LINE-1",
+    "date": "2026-10-24",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S1-LINE-2",
+    "date": "2026-10-24",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S2-LINE-2",
+    "date": "2026-10-24",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-24-S3-LINE-2",
+    "date": "2026-10-24",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S1-LINE-1",
+    "date": "2026-10-25",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S2-LINE-1",
+    "date": "2026-10-25",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S3-LINE-1",
+    "date": "2026-10-25",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S1-LINE-2",
+    "date": "2026-10-25",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S2-LINE-2",
+    "date": "2026-10-25",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-25-S3-LINE-2",
+    "date": "2026-10-25",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S1-LINE-1",
+    "date": "2026-10-26",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S2-LINE-1",
+    "date": "2026-10-26",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S3-LINE-1",
+    "date": "2026-10-26",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S1-LINE-2",
+    "date": "2026-10-26",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S2-LINE-2",
+    "date": "2026-10-26",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-26-S3-LINE-2",
+    "date": "2026-10-26",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S1-LINE-1",
+    "date": "2026-10-27",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S2-LINE-1",
+    "date": "2026-10-27",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S3-LINE-1",
+    "date": "2026-10-27",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S1-LINE-2",
+    "date": "2026-10-27",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S2-LINE-2",
+    "date": "2026-10-27",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-27-S3-LINE-2",
+    "date": "2026-10-27",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S1-LINE-1",
+    "date": "2026-10-28",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S2-LINE-1",
+    "date": "2026-10-28",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S3-LINE-1",
+    "date": "2026-10-28",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S1-LINE-2",
+    "date": "2026-10-28",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S2-LINE-2",
+    "date": "2026-10-28",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-28-S3-LINE-2",
+    "date": "2026-10-28",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S1-LINE-1",
+    "date": "2026-10-29",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S2-LINE-1",
+    "date": "2026-10-29",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S3-LINE-1",
+    "date": "2026-10-29",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S1-LINE-2",
+    "date": "2026-10-29",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S2-LINE-2",
+    "date": "2026-10-29",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-29-S3-LINE-2",
+    "date": "2026-10-29",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S1-LINE-1",
+    "date": "2026-10-30",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S2-LINE-1",
+    "date": "2026-10-30",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S3-LINE-1",
+    "date": "2026-10-30",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S1-LINE-2",
+    "date": "2026-10-30",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S2-LINE-2",
+    "date": "2026-10-30",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-30-S3-LINE-2",
+    "date": "2026-10-30",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S1-LINE-1",
+    "date": "2026-10-31",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S2-LINE-1",
+    "date": "2026-10-31",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S3-LINE-1",
+    "date": "2026-10-31",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S1-LINE-2",
+    "date": "2026-10-31",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S2-LINE-2",
+    "date": "2026-10-31",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-10-31-S3-LINE-2",
+    "date": "2026-10-31",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S1-LINE-1",
+    "date": "2026-11-01",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S2-LINE-1",
+    "date": "2026-11-01",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S3-LINE-1",
+    "date": "2026-11-01",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S1-LINE-2",
+    "date": "2026-11-01",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S2-LINE-2",
+    "date": "2026-11-01",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-01-S3-LINE-2",
+    "date": "2026-11-01",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S1-LINE-1",
+    "date": "2026-11-02",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S2-LINE-1",
+    "date": "2026-11-02",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S3-LINE-1",
+    "date": "2026-11-02",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S1-LINE-2",
+    "date": "2026-11-02",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S2-LINE-2",
+    "date": "2026-11-02",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-02-S3-LINE-2",
+    "date": "2026-11-02",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S1-LINE-1",
+    "date": "2026-11-03",
+    "shift": "S1",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-01",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S2-LINE-1",
+    "date": "2026-11-03",
+    "shift": "S2",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-03",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S3-LINE-1",
+    "date": "2026-11-03",
+    "shift": "S3",
+    "work_center_id": "LINE-1",
+    "lead_operator_id": "OP-05",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S1-LINE-2",
+    "date": "2026-11-03",
+    "shift": "S1",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-07",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S2-LINE-2",
+    "date": "2026-11-03",
+    "shift": "S2",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-09",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  },
+  {
+    "shift_instance_id": "2026-11-03-S3-LINE-2",
+    "date": "2026-11-03",
+    "shift": "S3",
+    "work_center_id": "LINE-2",
+    "lead_operator_id": "OP-11",
+    "planned_minutes": 480,
+    "break_minutes": 30
+  }
+]
