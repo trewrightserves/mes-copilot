@@ -192,9 +192,16 @@ async function liveChat(messages, { model, jsonMode, temperature = 0.2, maxToken
     throw new Error(`Llama API ${res.status}: ${detail.slice(0, 300)}`);
   }
   const data = await res.json();
-  const content = data && data.choices && data.choices[0] && data.choices[0].message
-    ? data.choices[0].message.content : '';
-  if (typeof content !== 'string') throw new Error('Llama API returned no text content');
+  const msg = data && data.choices && data.choices[0] ? data.choices[0].message : null;
+  let content = '';
+  if (msg) {
+    if (typeof msg.content === 'string' && msg.content.trim()) content = msg.content;
+    else if (typeof msg.reasoning_content === 'string' && msg.reasoning_content.trim()) content = msg.reasoning_content;
+    else if (Array.isArray(msg.content)) {
+      content = msg.content.map(p => (p && typeof p.text === 'string') ? p.text : '').join('');
+    }
+  }
+  if (!content || typeof content !== 'string') throw new Error('Llama API returned no text content');
   return content;
 }
 function parseJsonStrict(content) {
@@ -215,14 +222,21 @@ async function chatJSON(messages, opts = {}) {
     return { _stub: true, note: 'Stub JSON response.' };
   }
   const model = opts.vision ? VISION_MODEL : TEXT_MODEL;
-  const content = await liveChat(messages, { model, jsonMode: true, temperature: opts.temperature ?? 0.1, maxTokens: opts.maxTokens || 900 });
-  return parseJsonStrict(content);
+  try {
+    const content = await liveChat(messages, { model, jsonMode: true, temperature: opts.temperature ?? 0.1, maxTokens: opts.maxTokens || 2400 });
+    return parseJsonStrict(content);
+  } catch (err) {
+    // Graceful degradation for the downtime flow only: if the live model call
+    // fails, file the record with the deterministic parser rather than erroring.
+    if (flow === 'downtime_detective') return stubDowntime(userTextOf(messages));
+    throw err;
+  }
 }
 
 async function chatText(messages, opts = {}) {
   const flow = flowOf(messages);
   if (isStub()) return stubText(flow, userTextOf(messages));
-  return liveChat(messages, { model: TEXT_MODEL, jsonMode: false, temperature: opts.temperature ?? 0.3, maxTokens: opts.maxTokens || 700 });
+  return liveChat(messages, { model: TEXT_MODEL, jsonMode: false, temperature: opts.temperature ?? 0.3, maxTokens: opts.maxTokens || 1600 });
 }
 
 module.exports = { chatJSON, chatText, isStub, config, TEXT_MODEL, VISION_MODEL, BASE_URL };
