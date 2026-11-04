@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MES Copilot — Riverbend Fabrication, Plant 1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>MES Copilot</h1>
+    <p class="sub">Riverbend Fabrication — Plant 1 · synthetic demo data</p>
+  </div>
+  <span id="modeBadge" class="badge">…</span>
+</header>
+
+<section class="card" id="snapshotCard">
+  <h2>Today on the floor <span id="snapDate" class="muted"></span></h2>
+  <div class="stats" id="snapStats">
+    <div class="stat"><span class="num" id="stOrders">–</span><span class="lbl">orders scheduled</span></div>
+    <div class="stat"><span class="num" id="stProduced">–</span><span class="lbl">pieces produced</span></div>
+    <div class="stat warn"><span class="num" id="stDownMin">–</span><span class="lbl">downtime minutes</span></div>
+    <div class="stat warn"><span class="num" id="stDownCost">–</span><span class="lbl">downtime cost</span></div>
+    <div class="stat"><span class="num" id="stHolds">–</span><span class="lbl">open quality holds</span></div>
+  </div>
+  <p class="muted" id="snapLines"></p>
+  <div id="snapTopCauses" class="chips"></div>
+</section>
+
+<section class="card" id="flowA">
+  <h2>A · Vision QC <span class="tag">demo-grade assist — not a certified inspection</span></h2>
+  <p class="muted">Photograph a part, or pick a bundled sample. Samples are clearly synthetic renderings of BRK-2041, the 4-hole mounting bracket.</p>
+  <div id="sampleGrid" class="samples"></div>
+  <label class="filebtn">📷 Upload a part photo
+    <input type="file" id="qcFile" accept="image/*" hidden>
+  </label>
+  <span id="qcFileName" class="muted"></span>
+  <div id="qcResult"></div>
+</section>
+
+<section class="card" id="flowB">
+  <h2>B · Downtime Detective</h2>
+  <p class="muted">Describe the stoppage the way you would say it on the floor. You get back a filed-format record: line, equipment, cause code, root-cause and corrective-action drafts.</p>
+  <textarea id="dtText" rows="3" placeholder='e.g. "press kept jamming on the left feed, cleared it 3 times then called maint"'></textarea>
+  <div class="row">
+    <button id="dtGo" class="primary">File this stoppage</button>
+    <button id="dtExample" class="ghost">Try a messy one</button>
+  </div>
+  <div id="dtResult"></div>
+  <div id="dtRecent"></div>
+</section>
+
+<section class="card" id="flowC">
+  <h2>C · Ask Production</h2>
+  <p class="muted">Every number is computed from the production data in code — the model only phrases the answer, it never calculates.</p>
+  <div id="chips" class="chips"></div>
+  <div class="row">
+    <input type="text" id="askText" placeholder="Ask about downtime, cost, orders, holds…">
+    <button id="askGo" class="primary">Ask</button>
+  </div>
+  <div id="askResult"></div>
+  <hr>
+  <div class="row">
+    <strong>Shift handoff</strong>
+    <button id="handoffGo" class="primary">Generate handoff for current shift</button>
+  </div>
+  <div id="handoffResult"></div>
+</section>
+
+<footer class="muted foot">
+  Clean-room demo: every record is synthetic, generated from a seeded script (seed 42) shaped on public ISA-88 / ISA-95 concepts. No real company data.
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

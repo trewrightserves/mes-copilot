@@ -1,0 +1,51 @@
+:root{
+  --ink:#1c2430; --muted:#5b6673; --line:#d8dde3; --bg:#eef1f4; --card:#ffffff;
+  --accent:#0f6f4f; --accent2:#14508c; --warn:#b34700; --bad:#a41623; --ok:#0f6f4f;
+  --chip:#e7edf3;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:0 12px 40px}
+.topbar{max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:18px 4px 6px}
+.topbar h1{margin:0;font-size:26px;letter-spacing:.2px}
+.sub{margin:2px 0 0;color:var(--muted);font-size:13px}
+.badge{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:#ffe9c7;color:#7a4a00;border:1px solid #e5c07a;white-space:nowrap}
+.badge.live{background:#d8f2e3;color:#0b5138;border-color:#8fd0ac}
+.card{max-width:880px;margin:14px auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,30,40,.06)}
+.card h2{margin:0 0 6px;font-size:19px}
+.tag{font-size:11px;font-weight:700;color:var(--warn);background:#fff1e2;border:1px solid #f0cf9f;border-radius:999px;padding:2px 8px;vertical-align:middle;white-space:nowrap}
+.muted{color:var(--muted);font-size:13.5px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0}
+.stat{background:#f6f8fa;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.stat .num{display:block;font-size:24px;font-weight:800}
+.stat .lbl{font-size:12px;color:var(--muted)}
+.stat.warn .num{color:var(--warn)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:13.5px;cursor:pointer;min-height:40px}
+.chip:active{transform:scale(.98)}
+.samples{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:10px 0}
+.sample{border:1px solid var(--line);border-radius:10px;padding:6px;cursor:pointer;background:#fbfcfd;text-align:center}
+.sample img{width:100%;height:auto;border-radius:6px;display:block}
+.sample span{font-size:11.5px;color:var(--muted);display:block;margin-top:5px;line-height:1.25}
+.sample.selected{outline:3px solid var(--accent2)}
+.filebtn{display:inline-block;background:var(--accent2);color:#fff;padding:11px 16px;border-radius:9px;font-weight:600;cursor:pointer;min-height:44px}
+button{font:inherit;border-radius:9px;border:1px solid var(--line);padding:11px 16px;cursor:pointer;min-height:44px;background:#fff}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+button.ghost{background:#fff;color:var(--accent2);border-color:var(--accent2)}
+button:disabled{opacity:.55;cursor:wait}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+textarea,input[type=text]{width:100%;font:inherit;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fbfcfd}
+.row input[type=text]{flex:1;min-width:200px;width:auto}
+.result{margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#f8fafc}
+.result.pass{border-left:6px solid var(--ok)}
+.result.flag{border-left:6px solid var(--bad)}
+.verdict{font-size:20px;font-weight:800}
+.verdict.pass{color:var(--ok)} .verdict.flag{color:var(--bad)}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:4px 12px;font-size:14px;margin-top:8px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:600}
+.facts{white-space:pre-wrap;background:#eef3ee;border:1px dashed #b9cbb9;border-radius:8px;padding:10px;font-size:13px;margin-top:10px}
+.err{color:var(--bad);font-weight:600}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--chip);margin-right:6px}
+.pill.hold{background:#f8d7da;color:#7a1020}.pill.rework{background:#ffe9c7;color:#7a4a00}.pill.use{background:#d8f2e3;color:#0b5138}
+.foot{max-width:880px;margin:18px auto 0;text-align:center}
+hr{border:none;border-top:1px solid var(--line);margin:16px 0}
+@media (max-width:520px){ .kv{grid-template-columns:1fr} .topbar h1{font-size:22px} }
