@@ -18,7 +18,7 @@ async function loadHealth() {
   try {
     const h = await jget('/api/health');
     const b = $('modeBadge');
-    if (h.mode === 'stub') { b.textContent = 'STUB MODE — no API key'; b.className = 'badge'; }
+    if (h.mode === 'stub') { b.textContent = 'DEMO MODE · Deterministic simulation'; b.className = 'badge'; }
     else { b.textContent = `LIVE · ${h.llm.text_model}`; b.className = 'badge live'; }
   } catch (_) { $('modeBadge').textContent = 'server unreachable'; }
 }
@@ -33,7 +33,8 @@ async function loadSnapshot() {
   $('snapLines').textContent =
     `LINE-1: ${s.downtime.by_line['LINE-1'].minutes} min down (${money(s.downtime.by_line['LINE-1'].cost)}) · ` +
     `LINE-2: ${s.downtime.by_line['LINE-2'].minutes} min down (${money(s.downtime.by_line['LINE-2'].cost)}) · ` +
-    `${s.holds.placed_today} hold(s) placed today · ${s.inspections.today} inspections today, ${s.inspections.failed_qty} pieces failed`;
+    `${s.holds.placed_today} hold(s) placed today · ${s.inspections.today} inspections today, ${s.inspections.failed_qty} pieces failed` +
+    (s.downtime.uncosted_events ? ` · ${s.downtime.uncosted_events} event(s) today lack a cost estimate` : '');
   $('snapTopCauses').innerHTML = s.downtime.top_causes.map(c =>
     `<span class="chip" style="cursor:default">${esc(c.cause_code)} ${esc(c.label)} — ${c.minutes} min · ${money(c.cost)}</span>`).join('');
 }
@@ -63,10 +64,16 @@ function renderQc(v) {
     <p>${esc(v.note)}</p>
     <p class="muted">Demo-grade assist only — not a certified inspection.</p></div>`;
 }
+let qcRequestId = 0;
 async function runQc(body) {
+  const id = ++qcRequestId;
   $('qcResult').innerHTML = '<div class="result">Checking the part…</div>';
-  try { renderQc(await jpost('/api/qc', body)); }
-  catch (e) { $('qcResult').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`; }
+  try {
+    const v = await jpost('/api/qc', body);
+    if (id === qcRequestId) renderQc(v);
+  } catch (e) {
+    if (id === qcRequestId) $('qcResult').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`;
+  }
 }
 $('qcFile').addEventListener('change', (ev) => {
   const f = ev.target.files[0];
@@ -82,7 +89,7 @@ $('qcFile').addEventListener('change', (ev) => {
 
 // ---------- Flow B: Downtime Detective ----------
 $('dtExample').addEventListener('click', () => {
-  $('dtText').value = 'line just stopped, idk, smelled hot so we shut it down';
+  $('dtText').value = 'Press 101 kept jamming on the left feed. We cleared it three times and called maintenance. Line 1 was down for 45 minutes.';
 });
 $('dtGo').addEventListener('click', async () => {
   const description = $('dtText').value.trim();
@@ -91,8 +98,11 @@ $('dtGo').addEventListener('click', async () => {
   $('dtResult').innerHTML = '<div class="result">Structuring the record…</div>';
   try {
     const { record } = await jpost('/api/downtime', { description });
+    const filedLabel = record.work_center_id && record.work_unit_id
+      ? `Filed record ${esc(record.event_id)}`
+      : `Filed record ${esc(record.event_id)} — needs line/equipment confirmation`;
     $('dtResult').innerHTML = `<div class="result">
-      <strong>Filed record ${esc(record.event_id)}</strong> ${record.stub ? '<span class="pill">stub mode</span>' : ''}
+      <strong>${filedLabel}</strong> ${record.stub ? '<span class="pill">stub mode</span>' : ''}
       ${record.confidence != null ? `<span class="pill">confidence ${Math.round(record.confidence * 100)}%</span>` : ''}
       <dl class="kv">
         <dt>Summary</dt><dd>${esc(record.summary)}</dd>
