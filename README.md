@@ -42,9 +42,10 @@ npm start                    # http://localhost:3000  (PORT env overrides)
 - `src/server.js` — Express server: loads the dataset into memory at boot, serves the API + UI. All arithmetic lives here.
 - `src/llm.js` — Meta Model API client (live) + deterministic stub (no key).
 - `src/prompts.js` — the three flow prompts and the taxonomy they share.
+- `src/help.js` — deterministic keyword retrieval over the help knowledge base.
 - `src/generate-data.js` — seeded synthetic-dataset generator → `data/*.json`.
 - `src/generate-samples.js` — generates the bundled synthetic sample part photos.
-- `data/` — generated dataset (JSON). Stoppages filed through Flow B persist to `data/user_downtime_events.json`.
+- `data/` — generated dataset (JSON). Stoppages filed through Flow B persist to `data/user_downtime_events.json`. `data/help_kb.json` is the documentation knowledge base behind the Help chatbot (how-to articles for every flow, the cause-code taxonomy, troubleshooting).
 - `public/` — one-page vanilla JS app: dashboard snapshot + the three flow panels; phone-friendly.
 
 ## API
@@ -60,6 +61,8 @@ npm start                    # http://localhost:3000  (PORT env overrides)
 | `POST /api/handoff` | Shift handoff summary (computed facts, model-phrased) |
 | `GET /api/samples` | Bundled Vision QC sample photos |
 | `POST /api/qc` | Flow A: `{sampleId}` or `{imageBase64}` → verdict JSON |
+| `GET /api/help/topics` | Help knowledge base topics + suggested questions |
+| `POST /api/help` | Help chatbot: `{question}` → answer retrieved from `data/help_kb.json`, phrased by the model in live mode, served directly from the docs otherwise |
 
 ## Status
 
