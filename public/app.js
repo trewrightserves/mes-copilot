@@ -171,9 +171,40 @@ $('handoffGo').addEventListener('click', async () => {
   } finally { $('handoffGo').disabled = false; }
 });
 
+// ---------- Help chatbot (documentation knowledge base) ----------
+async function loadHelpChips() {
+  const { suggestions } = await jget('/api/help/topics');
+  $('helpChips').innerHTML = suggestions.map(q => `<button class="chip">${esc(q)}</button>`).join('');
+  document.querySelectorAll('#helpChips .chip').forEach(el => el.addEventListener('click', () => { $('helpText').value = el.textContent; askHelp(); }));
+}
+async function askHelp() {
+  const question = $('helpText').value.trim();
+  if (!question) {
+    $('helpLog').innerHTML = '<div class="result"><span class="err">Type a question first, or tap one of the suggestions above.</span></div>';
+    return;
+  }
+  $('helpGo').disabled = true;
+  const prior = $('helpLog').innerHTML;
+  $('helpLog').innerHTML = `<div class="result"><p style="margin-top:0"><strong>You:</strong> ${esc(question)}</p><p class="muted">Searching the documentation…</p></div>` + prior;
+  try {
+    const r = await jpost('/api/help', { question });
+    $('helpLog').innerHTML = `<div class="result">
+      <p style="margin-top:0"><strong>You:</strong> ${esc(question)}</p>
+      <p>${esc(r.answer)}</p>
+      ${r.sources && r.sources.length ? `<p class="muted">From the documentation: ${r.sources.map(esc).join(' · ')}</p>` : ''}
+      ${r.note ? `<p class="muted">${esc(r.note)}</p>` : ''}
+    </div>` + prior;
+  } catch (e) {
+    $('helpLog').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>` + prior;
+  } finally { $('helpGo').disabled = false; }
+}
+$('helpGo').addEventListener('click', askHelp);
+$('helpText').addEventListener('keydown', (e) => { if (e.key === 'Enter') askHelp(); });
+
 // ---------- boot ----------
 loadHealth();
 loadSnapshot().catch(e => { $('snapStats').innerHTML = `<span class="err">${esc(e.message)}</span>`; });
 loadSamples().catch(() => { $('sampleGrid').innerHTML = '<p class="err">Could not load the sample photos — is the server running?</p>'; });
 loadChips().catch(() => { $('chips').innerHTML = '<span class="err">Could not load the suggested questions — is the server running?</span>'; });
+loadHelpChips().catch(() => { $('helpChips').innerHTML = '<span class="err">Could not load the help topics — is the server running?</span>'; });
 loadRecent();

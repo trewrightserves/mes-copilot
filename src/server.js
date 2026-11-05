@@ -28,6 +28,7 @@ try {
 const express = require('express');
 const llm = require('./llm');
 const P = require('./prompts');
+const help = require('./help');
 
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, '..', 'data');
@@ -389,6 +390,50 @@ app.post('/api/handoff', async (req, res) => {
     res.json({ shift_instance_id: si.shift_instance_id, summary, facts, mode: llm.isStub() ? 'stub' : 'live' });
   } catch (err) {
     res.json({ shift_instance_id: si.shift_instance_id, summary: facts, facts, mode: llm.isStub() ? 'stub' : 'live', note: 'Phrasing model unavailable; showing computed facts directly.' });
+  }
+});
+
+// --- Help chatbot: retrieval over the documentation knowledge base ---------
+const HELP_SUGGESTIONS = [
+  'How do I file a stoppage?',
+  'What do the QC dispositions mean?',
+  'Where do the cost figures come from?',
+  'What questions can Ask Production answer?',
+  'What are the downtime cause codes?',
+  'Is the data in this demo real?'
+];
+
+app.get('/api/help/topics', (req, res) => {
+  res.json({ topics: help.topics(), suggestions: HELP_SUGGESTIONS });
+});
+
+app.post('/api/help', async (req, res) => {
+  const question = (req.body && req.body.question || '').trim().slice(0, 300);
+  if (!question) return res.status(400).json({ error: 'Ask a question about using MES Copilot first.' });
+  const found = help.search(question, 2);
+  const mode = llm.isStub() ? 'stub' : 'live';
+  if (!found.length) {
+    return res.json({
+      question, covered: false, mode, sources: [],
+      answer: `The help documentation does not cover that. It covers: ${help.topics().map(t => t.title).join('; ')}. For production figures (downtime, orders, holds), use Ask Production above instead.`,
+      suggestions: HELP_SUGGESTIONS
+    });
+  }
+  const sources = found.map(a => a.title);
+  const docAnswer = found[0].body + (found[1] ? `\n\nRelated: see "${found[1].title}".` : '');
+  if (llm.isStub()) {
+    // Deterministic mode: serve the retrieved documentation directly.
+    return res.json({ question, covered: true, answer: docAnswer, sources, mode });
+  }
+  try {
+    const answer = await llm.chatText([
+      { role: 'system', content: P.HELP_SYSTEM },
+      { role: 'user', content: P.helpUser(question, found) }
+    ]);
+    res.json({ question, covered: true, answer, sources, mode });
+  } catch (err) {
+    // Graceful fallback: the retrieved documentation still answers the question.
+    res.json({ question, covered: true, answer: docAnswer, sources, mode, note: 'Help model unavailable; showing the documentation directly.' });
   }
 });
 
