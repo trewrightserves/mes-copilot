@@ -10,7 +10,7 @@
 <header class="topbar">
   <div>
     <h1>MES Copilot</h1>
-    <p class="sub">Riverbend Fabrication — Plant 1 · synthetic demo data · in demo mode, inference is simulated and every fact is computed from the synthetic records</p>
+    <p class="sub"><span id="plantName">Riverbend Fabrication — Plant 1</span> · synthetic demo data · every fact is computed from the records</p>
   </div>
   <span id="modeBadge" class="badge">…</span>
 </header>
@@ -26,6 +26,27 @@
   </div>
   <p class="muted" id="snapLines"></p>
   <div id="snapTopCauses" class="chips"></div>
+</section>
+
+<section class="card" id="plantCard">
+  <h2>Your plant <span class="tag">make the copilot yours</span></h2>
+  <p class="muted">Set your own plant name, line names, downtime cost per minute, and equipment. New stoppages you file are costed at your rates and filed against your equipment, and the copilot uses your names everywhere. The seeded history stays Riverbend's — your profile shapes everything filed from now on. Saved on this demo server; it resets when the service restarts.</p>
+  <label>Plant name<br><input type="text" id="plName" maxlength="60" style="width:100%"></label>
+  <div class="row" style="margin-top:10px">
+    <label style="flex:1">Line 1 name<br><input type="text" id="plL1Label" maxlength="30"></label>
+    <label style="flex:1">Line 1 $/min<br><input type="number" id="plL1Rate" min="0.01" max="10000" step="0.01"></label>
+    <label style="flex:2">Line 1 equipment (comma separated)<br><input type="text" id="plL1Equip"></label>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <label style="flex:1">Line 2 name<br><input type="text" id="plL2Label" maxlength="30"></label>
+    <label style="flex:1">Line 2 $/min<br><input type="number" id="plL2Rate" min="0.01" max="10000" step="0.01"></label>
+    <label style="flex:2">Line 2 equipment (comma separated)<br><input type="text" id="plL2Equip"></label>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <button id="plSave" class="primary">Save my plant</button>
+    <button id="plReset" class="ghost">Back to the Riverbend demo plant</button>
+  </div>
+  <div id="plStatus"></div>
 </section>
 
 <section class="card" id="flowA">

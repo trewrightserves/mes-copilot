@@ -30,9 +30,10 @@ async function loadSnapshot() {
   $('stDownMin').textContent = s.downtime.minutes;
   $('stDownCost').textContent = money(s.downtime.cost_usd);
   $('stHolds').textContent = s.holds.open_now;
+  const lbl = s.line_labels || { 'LINE-1': 'LINE-1', 'LINE-2': 'LINE-2' };
   $('snapLines').textContent =
-    `LINE-1: ${s.downtime.by_line['LINE-1'].minutes} min down (${money(s.downtime.by_line['LINE-1'].cost)}) · ` +
-    `LINE-2: ${s.downtime.by_line['LINE-2'].minutes} min down (${money(s.downtime.by_line['LINE-2'].cost)}) · ` +
+    `${lbl['LINE-1']}: ${s.downtime.by_line['LINE-1'].minutes} min down (${money(s.downtime.by_line['LINE-1'].cost)}) · ` +
+    `${lbl['LINE-2']}: ${s.downtime.by_line['LINE-2'].minutes} min down (${money(s.downtime.by_line['LINE-2'].cost)}) · ` +
     `${s.holds.placed_today} hold(s) placed today · ${s.inspections.today} inspections today, ${s.inspections.failed_qty} pieces failed` +
     (s.downtime.uncosted_events ? ` · ${s.downtime.uncosted_events} event(s) today lack a cost estimate` : '');
   $('snapTopCauses').innerHTML = s.downtime.top_causes.map(c =>
@@ -201,8 +202,50 @@ async function askHelp() {
 $('helpGo').addEventListener('click', askHelp);
 $('helpText').addEventListener('keydown', (e) => { if (e.key === 'Enter') askHelp(); });
 
+// ---------- Plant Setup (user's own plant profile) ----------
+function fillPlantForm(p) {
+  const bySlot = Object.fromEntries(p.lines.map(l => [l.slot, l]));
+  $('plName').value = p.active ? p.plant_name : '';
+  $('plName').placeholder = 'e.g. My Plant — Decatur, AL';
+  $('plL1Label').value = bySlot['LINE-1'].label; $('plL1Rate').value = bySlot['LINE-1'].rate; $('plL1Equip').value = bySlot['LINE-1'].equipment.join(', ');
+  $('plL2Label').value = bySlot['LINE-2'].label; $('plL2Rate').value = bySlot['LINE-2'].rate; $('plL2Equip').value = bySlot['LINE-2'].equipment.join(', ');
+  $('plantName').textContent = p.plant_name;
+}
+async function loadPlant() {
+  try { fillPlantForm(await jget('/api/plant')); } catch (_) { /* non-fatal */ }
+}
+$('plSave').addEventListener('click', async () => {
+  const body = {
+    plantName: $('plName').value,
+    lines: {
+      'LINE-1': { label: $('plL1Label').value, rate: $('plL1Rate').value, equipment: $('plL1Equip').value },
+      'LINE-2': { label: $('plL2Label').value, rate: $('plL2Rate').value, equipment: $('plL2Equip').value }
+    }
+  };
+  $('plSave').disabled = true;
+  try {
+    const p = await jpost('/api/plant', body);
+    fillPlantForm(p);
+    $('plStatus').innerHTML = `<div class="result"><strong>${esc(p.plant_name)} is live.</strong> New filings will use your line names, equipment, and rates (${p.lines.map(l => `${esc(l.label)} at ${money(l.rate)}/min`).join(' · ')}).${p.persisted === false ? ' Note: the profile is held in memory only on this server right now.' : ''}</div>`;
+    loadSnapshot().catch(() => {});
+  } catch (e) {
+    $('plStatus').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`;
+  } finally { $('plSave').disabled = false; }
+});
+$('plReset').addEventListener('click', async () => {
+  try {
+    const p = await jpost('/api/plant/reset', {});
+    fillPlantForm(p);
+    $('plStatus').innerHTML = '<div class="result">Back to the Riverbend demo plant — seeded names, equipment, and rates.</div>';
+    loadSnapshot().catch(() => {});
+  } catch (e) {
+    $('plStatus').innerHTML = `<div class="result"><span class="err">${esc(e.message)}</span></div>`;
+  }
+});
+
 // ---------- boot ----------
 loadHealth();
+loadPlant();
 loadSnapshot().catch(e => { $('snapStats').innerHTML = `<span class="err">${esc(e.message)}</span>`; });
 loadSamples().catch(() => { $('sampleGrid').innerHTML = '<p class="err">Could not load the sample photos — is the server running?</p>'; });
 loadChips().catch(() => { $('chips').innerHTML = '<span class="err">Could not load the suggested questions — is the server running?</span>'; });
