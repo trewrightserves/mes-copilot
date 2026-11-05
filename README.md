@@ -63,6 +63,9 @@ npm start                    # http://localhost:3000  (PORT env overrides)
 | `POST /api/qc` | Flow A: `{sampleId}` or `{imageBase64}` → verdict JSON |
 | `GET /api/help/topics` | Help knowledge base topics + suggested questions |
 | `POST /api/help` | Help chatbot: `{question}` → answer retrieved from `data/help_kb.json`, phrased by the model in live mode, served directly from the docs otherwise |
+| `GET /api/plant` | The effective plant profile (user's own setup, or the Riverbend defaults) |
+| `POST /api/plant` | Save the user's plant profile: plant name, line labels, downtime rates, equipment names — applied to new filings, costing, and labels; persisted to `data/plant_profile.json` |
+| `POST /api/plant/reset` | Clear the plant profile and return to the Riverbend demo plant |
 
 ## Status
 
