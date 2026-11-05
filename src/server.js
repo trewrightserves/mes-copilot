@@ -91,7 +91,7 @@ function effectivePlant() {
 }
 function profileContextText() {
   if (!plantProfile) return null;
-  return `This filing is for the plant "${plantName()}", not Riverbend. Its lines: ${LINE_SLOTS.map(s => `"${lineLabel(s)}" (internal line id ${s}; equipment: ${lineEquipment(s).join(', ')})`).join(' and ')}. File against the matching internal line id and use the profile's equipment names when the description matches them.`;
+  return `This filing is for the plant "${plantName()}", not Riverbend. Its lines: ${LINE_SLOTS.map(s => `"${lineLabel(s)}" (internal line id ${s}; equipment: ${lineEquipment(s).join(', ')})`).join(' and ')}. File against the matching internal line id. Use ONLY the profile's equipment names for this plant — never Riverbend equipment names. If the description names a piece of equipment, use that exact name from the profile list.`;
 }
 const orderById = Object.fromEntries(orders.map(o => [o.order_id, o]));
 const shiftById = Object.fromEntries(shifts.map(s => [s.shift_instance_id, s]));
@@ -338,11 +338,22 @@ app.post('/api/downtime', async (req, res) => {
       { role: 'user', content: P.downtimeUser(description, { currentLine: req.body.line || null, shift: req.body.shift || null, plantProfile: profileContextText() }) }
     ]);
     const line = draft.line && LINE_SLOTS.includes(draft.line) ? draft.line : (req.body.line && LINE_SLOTS.includes(req.body.line) ? req.body.line : null);
+    // Deterministic equipment match under a plant profile: if the operator's
+    // own words name one of their plant's machines, that name wins over the
+    // model's pick (models lean toward the seeded Riverbend equipment).
+    let equipment = draft.equipment || null;
+    if (plantProfile) {
+      const descLc = description.toLowerCase();
+      for (const slot of LINE_SLOTS) {
+        const hit = lineEquipment(slot).find(e => descLc.includes(e.toLowerCase()));
+        if (hit) { equipment = hit; break; }
+      }
+    }
     const duration = Math.min(480, Math.max(1, Math.round(Number(draft.estimated_duration_min) || 30)));
     const record = {
       event_id: `DT-USER-${String(userEvents.length + 1).padStart(4, '0')}`,
       work_center_id: line,
-      work_unit_id: draft.equipment || null,
+      work_unit_id: equipment,
       shift_instance_id: null,
       order_id: null,
       start: `${TODAY}T${new Date().toTimeString().slice(0, 8)}`,
