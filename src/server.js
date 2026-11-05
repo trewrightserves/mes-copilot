@@ -62,6 +62,37 @@ const downtimeEvents = [...loadJson('downtime_events.json'), ...userEvents];
 
 const TODAY = meta.demo_today;
 const LINE_COST = Object.fromEntries(hierarchy.work_centers.map(w => [w.id, w.downtime_cost_per_min]));
+
+// ---------------------------------------------------------------------------
+// Plant profile (user's own plant setup). Seeded default = Riverbend.
+// A profile customizes the plant name, line labels, downtime rates, and
+// equipment names used for NEW filings and display. The seeded history
+// always stays Riverbend's; that boundary is stated in the UI and the KB.
+// Persisted to data/plant_profile.json on this server (demo-grade storage:
+// it resets when the service filesystem resets, like Flow B user events).
+// ---------------------------------------------------------------------------
+const PROFILE_FILE = path.join(DATA_DIR, 'plant_profile.json');
+const LINE_SLOTS = ['LINE-1', 'LINE-2'];
+const DEFAULT_EQUIPMENT = { 'LINE-1': ['PRESS-101', 'FORM-102', 'QC-103'], 'LINE-2': ['ASM-201', 'TORQ-202', 'PACK-203'] };
+let plantProfile = null;
+if (fs.existsSync(PROFILE_FILE)) {
+  try { plantProfile = JSON.parse(fs.readFileSync(PROFILE_FILE, 'utf8')); } catch (_) { plantProfile = null; }
+}
+const plantName = () => (plantProfile && plantProfile.plantName) || 'Riverbend Fabrication — Plant 1';
+const lineLabel = (slot) => (plantProfile && plantProfile.lines && plantProfile.lines[slot] && plantProfile.lines[slot].label) || slot;
+const lineRate = (slot) => (plantProfile && plantProfile.lines && plantProfile.lines[slot] && typeof plantProfile.lines[slot].rate === 'number') ? plantProfile.lines[slot].rate : LINE_COST[slot];
+const lineEquipment = (slot) => (plantProfile && plantProfile.lines && plantProfile.lines[slot] && Array.isArray(plantProfile.lines[slot].equipment) && plantProfile.lines[slot].equipment.length) ? plantProfile.lines[slot].equipment : DEFAULT_EQUIPMENT[slot];
+function effectivePlant() {
+  return {
+    active: !!plantProfile,
+    plant_name: plantName(),
+    lines: LINE_SLOTS.map(slot => ({ slot, label: lineLabel(slot), rate: lineRate(slot), equipment: lineEquipment(slot) }))
+  };
+}
+function profileContextText() {
+  if (!plantProfile) return null;
+  return `This filing is for the plant "${plantName()}", not Riverbend. Its lines: ${LINE_SLOTS.map(s => `"${lineLabel(s)}" (internal line id ${s}; equipment: ${lineEquipment(s).join(', ')})`).join(' and ')}. File against the matching internal line id and use the profile's equipment names when the description matches them.`;
+}
 const orderById = Object.fromEntries(orders.map(o => [o.order_id, o]));
 const shiftById = Object.fromEntries(shifts.map(s => [s.shift_instance_id, s]));
 const money = (n) => `$${Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
@@ -205,7 +236,7 @@ function computeFacts(question) {
     const factLines = [
       `Scope: ${scope}.`,
       `Total downtime: ${s.totalMin} minutes across ${s.count} recorded stoppages.`,
-      `Total downtime cost: ${money(s.totalCost)} (computed at ${line ? money(LINE_COST[line]) : '$38.50 on LINE-1 and $24.75 on LINE-2'} per minute)${uncostedNote(s)}.`
+      `Total downtime cost: ${money(s.totalCost)} (computed at ${line ? money(lineRate(line)) : `${money(lineRate('LINE-1'))} on ${lineLabel('LINE-1')} and ${money(lineRate('LINE-2'))} on ${lineLabel('LINE-2')}`} per minute)${uncostedNote(s)}.`
     ];
     if (!causeHit && s.ranked.length) {
       factLines.push('Breakdown by cause (minutes, cost, events):');
@@ -259,6 +290,7 @@ app.get('/api/health', (req, res) => {
     demo_today: TODAY,
     mode: cfg.stub ? 'stub' : 'live',
     llm: { base_url: cfg.baseUrl, text_model: cfg.textModel, vision_model: cfg.visionModel },
+    plant_profile: { active: !!plantProfile, plant_name: plantName() },
     counts: meta.counts
   });
 });
@@ -279,6 +311,9 @@ app.get('/api/snapshot', (req, res) => {
   res.json({
     date: TODAY,
     plant: meta.plant,
+    plant_name: plantName(),
+    profile_active: !!plantProfile,
+    line_labels: { 'LINE-1': lineLabel('LINE-1'), 'LINE-2': lineLabel('LINE-2') },
     orders: {
       scheduled_today: todaysOrders.length,
       by_status: todaysOrders.reduce((acc, o) => { acc[o.status] = (acc[o.status] || 0) + 1; return acc; }, {}),
@@ -300,9 +335,9 @@ app.post('/api/downtime', async (req, res) => {
   try {
     const draft = await llm.chatJSON([
       { role: 'system', content: P.DOWNTIME_SYSTEM },
-      { role: 'user', content: P.downtimeUser(description, { currentLine: req.body.line || null, shift: req.body.shift || null }) }
+      { role: 'user', content: P.downtimeUser(description, { currentLine: req.body.line || null, shift: req.body.shift || null, plantProfile: profileContextText() }) }
     ]);
-    const line = draft.line && LINE_COST[draft.line] ? draft.line : (req.body.line && LINE_COST[req.body.line] ? req.body.line : null);
+    const line = draft.line && LINE_SLOTS.includes(draft.line) ? draft.line : (req.body.line && LINE_SLOTS.includes(req.body.line) ? req.body.line : null);
     const duration = Math.min(480, Math.max(1, Math.round(Number(draft.estimated_duration_min) || 30)));
     const record = {
       event_id: `DT-USER-${String(userEvents.length + 1).padStart(4, '0')}`,
@@ -314,7 +349,7 @@ app.post('/api/downtime', async (req, res) => {
       duration_min: duration,
       class: draft.class || 'unplanned_equipment',
       cause_code: draft.cause_code || 'EQ-BRK',
-      cost_usd: line ? Math.round(duration * LINE_COST[line] * 100) / 100 : null,
+      cost_usd: line ? Math.round(duration * lineRate(line) * 100) / 100 : null,
       operator_note: description,
       root_cause: draft.root_cause_draft || null,
       corrective_action: draft.corrective_action_draft || null,
@@ -391,6 +426,41 @@ app.post('/api/handoff', async (req, res) => {
   } catch (err) {
     res.json({ shift_instance_id: si.shift_instance_id, summary: facts, facts, mode: llm.isStub() ? 'stub' : 'live', note: 'Phrasing model unavailable; showing computed facts directly.' });
   }
+});
+
+// --- Plant Setup: the user's own plant profile ------------------------------
+app.get('/api/plant', (req, res) => res.json(effectivePlant()));
+
+app.post('/api/plant', (req, res) => {
+  const body = req.body || {};
+  const cleanText = (v, max) => String(v == null ? '' : v).trim().slice(0, max);
+  const name = cleanText(body.plantName, 60);
+  if (!name) return res.status(400).json({ error: 'Give your plant a name first.' });
+  const linesIn = (body.lines && typeof body.lines === 'object') ? body.lines : {};
+  const lines = {};
+  for (const slot of LINE_SLOTS) {
+    const src = linesIn[slot] || {};
+    const label = cleanText(src.label, 30) || slot;
+    const rate = Number(src.rate);
+    if (!Number.isFinite(rate) || rate <= 0 || rate > 10000) {
+      return res.status(400).json({ error: `Downtime rate for ${slot} must be a number between 0.01 and 10,000 (dollars per minute).` });
+    }
+    let equipment = [];
+    if (Array.isArray(src.equipment)) equipment = src.equipment;
+    else if (typeof src.equipment === 'string') equipment = src.equipment.split(',');
+    equipment = equipment.map(e => cleanText(e, 24)).filter(Boolean).slice(0, 8);
+    lines[slot] = { label, rate: Math.round(rate * 100) / 100, equipment };
+  }
+  plantProfile = { plantName: name, lines };
+  let persisted = true;
+  try { fs.writeFileSync(PROFILE_FILE, JSON.stringify(plantProfile, null, 2) + '\n'); } catch (_) { persisted = false; }
+  res.json({ ...effectivePlant(), persisted });
+});
+
+app.post('/api/plant/reset', (req, res) => {
+  plantProfile = null;
+  try { if (fs.existsSync(PROFILE_FILE)) fs.unlinkSync(PROFILE_FILE); } catch (_) { /* in-memory reset already done */ }
+  res.json(effectivePlant());
 });
 
 // --- Help chatbot: retrieval over the documentation knowledge base ---------

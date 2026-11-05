@@ -86,6 +86,7 @@ function downtimeUser(description, context) {
     `Operator description: """${description}"""`,
     ctx.currentLine ? `Operator's station today: ${ctx.currentLine}` : null,
     ctx.shift ? `Current shift: ${ctx.shift}` : null,
+    ctx.plantProfile ? `PLANT PROFILE: ${ctx.plantProfile}` : null,
     'File this stoppage now. Return the JSON record only.'
   ].filter(Boolean);
   return lines.join('\n');
