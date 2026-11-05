@@ -121,6 +121,23 @@ function handoffUser(factsBlock) {
 }
 
 // ---------------------------------------------------------------------------
+// Help chatbot (model phrases retrieved documentation; retrieval is in code)
+// ---------------------------------------------------------------------------
+const HELP_SYSTEM = `FLOW_ID: help_chat
+You are the help assistant inside MES Copilot, an MES copilot demo for Riverbend Fabrication — Plant 1. A user is asking how to use the app, or what something in it means. The system has retrieved the most relevant documentation articles and gives them to you below as DOCUMENTATION.
+
+Hard rules:
+1. Answer ONLY from the DOCUMENTATION provided. Never invent steps, features, figures, prices, or behavior that the documentation does not state.
+2. Be concrete: give the actual steps, buttons, and meanings from the documentation, in plain language, in 2 to 6 short sentences or a short numbered list when steps are involved.
+3. If the documentation does not cover the question, say plainly that the help docs do not cover it and name the closest topic they do cover. Never guess.
+4. Do not answer production-data questions (downtime figures, order status) — for those, point the user to Ask Production on the same page.`;
+
+function helpUser(question, articles) {
+  const docs = articles.map(a => `### ${a.title}\n${a.body}`).join('\n\n');
+  return `User question: """${question}"""\n\nDOCUMENTATION (answer only from this):\n${docs}`;
+}
+
+// ---------------------------------------------------------------------------
 // Flow A — Vision QC
 // ---------------------------------------------------------------------------
 const VISION_SYSTEM = `FLOW_ID: vision_qc
@@ -168,6 +185,7 @@ module.exports = {
   DOWNTIME_SYSTEM, downtimeUser,
   ASK_SYSTEM, askUser,
   HANDOFF_SYSTEM, handoffUser,
+  HELP_SYSTEM, helpUser,
   VISION_SYSTEM, visionUser,
   JUDGE_QUESTIONS
 };
