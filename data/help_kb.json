@@ -1,1 +1,206 @@
-[{"body":"MES Copilot is a working assistant for a small fabrication plant, built over a synthetic dataset for Riverbend Fabrication, Plant 1 (two lines, 30 days of orders, downtime, inspections, and quality holds).\n\nThe page has four parts, top to bottom:\n1. Today on the floor: a live snapshot of today's orders, pieces produced, downtime minutes and cost, and open quality holds.\n2. A · Vision QC: photograph a part (or pick a bundled sample) and get a pass/flag verdict with a disposition.\n3. B · Downtime Detective: describe a stoppage in your own words and get a filed-format downtime record.\n4. C · Ask Production: ask plain-English questions about downtime, cost, orders, and holds, and generate a shift handoff.\n\nEverything runs in the browser; there is nothing to install and no account. Start with the snapshot, then try each flow once: the sample photos, the messy example in Flow B, and a suggested question in Flow C.","id":"getting-started","keywords":["start","begin","overview","what is","introduction","flows","sections","dashboard","snapshot","home"],"title":"Getting started with MES Copilot"},{"body":"Vision QC checks a photo of a stamped bracket (BRK-2041, a 4-hole mounting bracket) and returns a verdict.\n\nSteps:\n1. Click one of the bundled sample photos, or use the Upload button to send your own part photo.\n2. The model inspects the photo and returns: a verdict (pass or flag), any defect types it found from a fixed vocabulary (surface_scratch, dent, hole_missing, hole_offcenter, bend_angle_off, burr, crack, finish_discolor), a confidence score, a plain-language note, and a disposition.\n3. Dispositions mean: use (part is fine to use), rework (fix and re-check), hold (set aside for a human quality decision).\n\nHonest limits: this is a demo-grade assist, not a certified inspection. The sample photos are clearly synthetic renderings. A photo the model does not recognize is flagged and held for a human — it is never passed automatically. Uploaded photos must be image files and reasonably sized; very large files are rejected with a message.","id":"vision-qc","keywords":["vision","qc","photo","photograph","inspect","inspection","part","bracket","verdict","pass","flag","disposition","upload","sample","defect","confidence"],"title":"How to use Vision QC (Flow A)"},{"body":"Downtime Detective turns a plain-words description of a stoppage into the structured record a plant files.\n\nSteps:\n1. Type what happened the way you would say it on the floor, for example: \"Press 101 kept jamming on the left feed. We cleared it three times and called maintenance. Line 1 was down for 45 minutes.\" (The \"Try a messy one\" button loads exactly this.)\n2. Submit. The model drafts the record: line, equipment, downtime class and cause code from the plant taxonomy, estimated duration, a root-cause draft, and a corrective-action draft.\n3. The record is costed the moment it lands, at the line's downtime rate (LINE-1 $38.50 per minute, LINE-2 $24.75 per minute), and it immediately counts in the Today on the floor snapshot and in Ask Production answers.\n\nGood descriptions mention the line, the equipment, what went wrong, and roughly how long it lasted. If the line is not stated or cannot be matched, the record still files, but it is labeled \"needs line/equipment confirmation\" and carries no cost estimate until the line is known. Root cause and corrective action are drafts for the shift lead to confirm, not final findings. Durations are capped at 480 minutes per record.","id":"downtime-detective","keywords":["downtime","stoppage","file","report","record","jam","stopped","machine down","detective","describe","root cause","corrective action"],"title":"How to file a stoppage with Downtime Detective (Flow B)"},{"body":"Ask Production answers plain-English questions about the plant, with every figure computed from the production data in code.\n\nIt covers:\n- How a line (or the whole plant) is doing today, this week (last 7 days), or this month (the last 30 days): orders, produced pieces, scrap, downtime and its cost.\n- Downtime by line, cause, class, and time window, with cost. Ask \"What stopped Line 2 this week, and what did it cost?\"\n- Orders that are late, on hold, or running, and the status of one specific order by its PO number (for example PO-2026-10403, use the exact format shown in the orders list).\n- Quality holds placed in a time window, how many pieces they hold, and how many are still open.\n\nThe suggested-question chips above the input are a good starting point; clicking one asks it immediately. Every answer can be expanded to show the computed facts behind it. If the data does not cover a question, the copilot says so plainly and lists what it can answer instead of inventing an answer.","id":"ask-production","keywords":["ask","question","query","cost","how much","orders","holds","late","running","line doing","week","month","po","purchase order"],"title":"How to ask questions with Ask Production (Flow C)"},{"body":"The shift handoff turns the current shift's computed facts into a short note for the incoming lead.\n\nSteps:\n1. In Flow C, click \"Generate handoff for current shift.\"\n2. The copilot picks the shift with the most recent downtime activity today and builds the note from computed facts: orders scheduled, complete, running, on hold, and late on that line; pieces produced against plan and scrap; downtime minutes, cost, and the biggest cause; quality holds touching the line and how many are still open; and how many stoppages still have no root cause recorded — the first thing the incoming lead should chase.\n3. You can expand the note to see the exact computed facts behind it, so anything in the handoff can be checked against the records.","id":"shift-handoff","keywords":["handoff","shift","lead","incoming","summary","end of shift","turnover"],"title":"How the shift handoff works (Flow C)"},{"body":"One rule runs through the whole app: the model never calculates. Every production figure — downtime minutes, costs, produced pieces, hold counts — is computed in deterministic code from the production records. The model only does three things: reads part photos (Flow A), structures messy descriptions into records (Flow B), and phrases computed facts into readable answers (Flow C). That is why any figure in an answer can be expanded and checked against the facts block under it.\n\nCosts are duration multiplied by the line's downtime rate: $38.50 per minute on LINE-1 and $24.75 per minute on LINE-2. If a stoppage record has no line, no rate can be applied; those events are counted in minutes and flagged explicitly as lacking a cost estimate rather than silently priced at zero.\n\nConfidence scores come from the model and mean how sure it is of that read or filing, not a guarantee. Low-confidence and unrecognized items are routed to a human instead of being forced into an answer.","id":"numbers-and-trust","keywords":["trust","numbers","calculate","math","accurate","confidence","cost","rate","uncosted","estimate","how does it work","model"],"title":"Why the numbers can be trusted"},{"body":"Every downtime record carries a class and a cause code from a fixed plant taxonomy, so stoppages can be trended instead of buried in free text.\n\nCause codes:\n- EQ-BRK Breakdown\n- EQ-JAM Jam\n- EQ-WEAR Tooling wear\n- EQ-OVHT Overheat\n- MAT-OUT Stock-out\n- MAT-DEF Defective material\n- MAT-LATE Late delivery\n- QL-HOLD Quality hold\n- QL-REWK Rework loop\n- OP-ABS Operator unavailable\n- UT-PWR Power dip\n- IT-SYS System / tablet down\n- PL-CHG Changeover\n- PL-PM Planned maintenance\n- PL-BRK No-order gap\n\nClasses group the causes: unplanned_equipment (EQ-BRK, EQ-JAM, EQ-WEAR, EQ-OVHT), unplanned_material (MAT-OUT, MAT-DEF, MAT-LATE), unplanned_quality (QL-HOLD, QL-REWK), unplanned_people_other (OP-ABS, UT-PWR, IT-SYS), and planned (PL-CHG, PL-PM, PL-BRK).\n\nEquipment at Riverbend: LINE-1 runs PRESS-101, FORM-102, and QC-103; LINE-2 runs ASM-201, TORQ-202, and PACK-203.","id":"cause-codes","keywords":["cause","code","codes","taxonomy","class","classes","eq-jam","eq-brk","changeover","categories","labels"],"title":"Downtime cause codes and classes"},{"body":"All data in this demo is synthetic. Riverbend Fabrication is a fictional two-line metal-fabrication plant. The dataset (30 days of orders, downtime events, inspections, and quality holds) is generated by a seeded script (seed 42), so it is fully reproducible, and its shapes follow public ISA-88 / ISA-95 concepts: site, areas, work centers (LINE-1, LINE-2), and work units (PRESS-101, FORM-102, QC-103, ASM-201, TORQ-202, PACK-203).\n\nThe demo's \"today\" is the final day of the dataset, and \"this week\" and \"this month\" are counted back from that day, so the numbers are stable whenever you open the app. Stoppages you file in Flow B are added to the live event list for the session and counted in the snapshot and answers immediately.\n\nClean-room note: no employer or client code, data, screenshots, or documents were used or derived from. Everything here is original and synthetic.","id":"demo-data","keywords":["data","synthetic","fake","real","seed","riverbend","isa","dataset","demo","today","dates"],"title":"About the demo data"},{"body":"Common issues and what they mean:\n\n- \"The production data on hand does not cover that question\" (Flow C): the question is outside what the dataset can answer. Try one of the suggested questions; the covered topics are downtime and cost by line and window, order status (including by PO number), orders late/on hold/running, and quality holds.\n\n- Photo upload rejected or too large: use a standard image file (JPEG or PNG) and a smaller photo if the file is very large. If a photo is accepted but the part is not recognized, the verdict will be flag/hold for a human — that is deliberate, not an error.\n\n- A filed stoppage shows no cost: the line could not be determined from the description, so no downtime rate was applied. The record is labeled \"needs line/equipment confirmation\" and its minutes still count; naming the line in the description fixes it next time.\n\n- A verdict or answer shows an error message: the model call failed at that moment (for example a network or service interruption). Nothing was filed or recorded from a failed call; wait a few seconds and try again.\n\n- The snapshot numbers changed after filing: that is expected — records filed in Flow B join the live event list and are counted right away.","id":"troubleshooting","keywords":["error","failed","not working","problem","photo rejected","too large","not covered","no answer","missing","wrong","help"],"title":"Troubleshooting"},{"body":"MES Copilot is built for the plants enterprise MES leaves behind: shops under a few hundred people whose production knowledge lives in operators' heads and free-text notes. It is the seed of a One Cube Up product — downtime intelligence first, then quality assist — designed so the same three flows can be pointed at a real plant's own data, with the taxonomy, downtime rates, and plant hierarchy configured per plant.\n\nNext steps after this demo: pilot conversations with small manufacturers, a real-photo QC evaluation set (moving Vision QC from synthetic samples toward real parts, with the same demo-grade honesty until it earns more), and multi-plant profiles.\n\nMES Copilot was built by Tré Wright of One Cube Up LLC, who led MES teams on greenfield plant launches.","id":"whats-next","keywords":["next","roadmap","product","price","pricing","buy","pilot","real plant","one cube up","who built","contact","future"],"title":"What MES Copilot is for, and what comes next"}]
+[
+ {
+  "body": "MES Copilot is a working assistant for a small fabrication plant, built over a synthetic dataset for Riverbend Fabrication, Plant 1 (two lines, 30 days of orders, downtime, inspections, and quality holds).\n\nThe page has four parts, top to bottom:\n1. Today on the floor: a live snapshot of today's orders, pieces produced, downtime minutes and cost, and open quality holds.\n2. A \u00b7 Vision QC: photograph a part (or pick a bundled sample) and get a pass/flag verdict with a disposition.\n3. B \u00b7 Downtime Detective: describe a stoppage in your own words and get a filed-format downtime record.\n4. C \u00b7 Ask Production: ask plain-English questions about downtime, cost, orders, and holds, and generate a shift handoff.\n\nEverything runs in the browser; there is nothing to install and no account. Start with the snapshot, then try each flow once: the sample photos, the messy example in Flow B, and a suggested question in Flow C.",
+  "id": "getting-started",
+  "keywords": [
+   "start",
+   "begin",
+   "overview",
+   "what is",
+   "introduction",
+   "flows",
+   "sections",
+   "dashboard",
+   "snapshot",
+   "home"
+  ],
+  "title": "Getting started with MES Copilot"
+ },
+ {
+  "body": "Vision QC checks a photo of a stamped bracket (BRK-2041, a 4-hole mounting bracket) and returns a verdict.\n\nSteps:\n1. Click one of the bundled sample photos, or use the Upload button to send your own part photo.\n2. The model inspects the photo and returns: a verdict (pass or flag), any defect types it found from a fixed vocabulary (surface_scratch, dent, hole_missing, hole_offcenter, bend_angle_off, burr, crack, finish_discolor), a confidence score, a plain-language note, and a disposition.\n3. Dispositions mean: use (part is fine to use), rework (fix and re-check), hold (set aside for a human quality decision).\n\nHonest limits: this is a demo-grade assist, not a certified inspection. The sample photos are clearly synthetic renderings. A photo the model does not recognize is flagged and held for a human \u2014 it is never passed automatically. Uploaded photos must be image files and reasonably sized; very large files are rejected with a message.",
+  "id": "vision-qc",
+  "keywords": [
+   "vision",
+   "qc",
+   "photo",
+   "photograph",
+   "inspect",
+   "inspection",
+   "part",
+   "bracket",
+   "verdict",
+   "pass",
+   "flag",
+   "disposition",
+   "upload",
+   "sample",
+   "defect",
+   "confidence"
+  ],
+  "title": "How to use Vision QC (Flow A)"
+ },
+ {
+  "body": "Downtime Detective turns a plain-words description of a stoppage into the structured record a plant files.\n\nSteps:\n1. Type what happened the way you would say it on the floor, for example: \"Press 101 kept jamming on the left feed. We cleared it three times and called maintenance. Line 1 was down for 45 minutes.\" (The \"Try a messy one\" button loads exactly this.)\n2. Submit. The model drafts the record: line, equipment, downtime class and cause code from the plant taxonomy, estimated duration, a root-cause draft, and a corrective-action draft.\n3. The record is costed the moment it lands, at the line's downtime rate (LINE-1 $38.50 per minute, LINE-2 $24.75 per minute), and it immediately counts in the Today on the floor snapshot and in Ask Production answers.\n\nGood descriptions mention the line, the equipment, what went wrong, and roughly how long it lasted. If the line is not stated or cannot be matched, the record still files, but it is labeled \"needs line/equipment confirmation\" and carries no cost estimate until the line is known. Root cause and corrective action are drafts for the shift lead to confirm, not final findings. Durations are capped at 480 minutes per record.",
+  "id": "downtime-detective",
+  "keywords": [
+   "downtime",
+   "stoppage",
+   "file",
+   "report",
+   "record",
+   "jam",
+   "stopped",
+   "machine down",
+   "detective",
+   "describe",
+   "root cause",
+   "corrective action"
+  ],
+  "title": "How to file a stoppage with Downtime Detective (Flow B)"
+ },
+ {
+  "body": "Ask Production answers plain-English questions about the plant, with every figure computed from the production data in code.\n\nIt covers:\n- How a line (or the whole plant) is doing today, this week (last 7 days), or this month (the last 30 days): orders, produced pieces, scrap, downtime and its cost.\n- Downtime by line, cause, class, and time window, with cost. Ask \"What stopped Line 2 this week, and what did it cost?\"\n- Orders that are late, on hold, or running, and the status of one specific order by its PO number (for example PO-2026-10403, use the exact format shown in the orders list).\n- Quality holds placed in a time window, how many pieces they hold, and how many are still open.\n\nThe suggested-question chips above the input are a good starting point; clicking one asks it immediately. Every answer can be expanded to show the computed facts behind it. If the data does not cover a question, the copilot says so plainly and lists what it can answer instead of inventing an answer.",
+  "id": "ask-production",
+  "keywords": [
+   "ask",
+   "question",
+   "query",
+   "cost",
+   "how much",
+   "orders",
+   "holds",
+   "late",
+   "running",
+   "line doing",
+   "week",
+   "month",
+   "po",
+   "purchase order"
+  ],
+  "title": "How to ask questions with Ask Production (Flow C)"
+ },
+ {
+  "body": "The shift handoff turns the current shift's computed facts into a short note for the incoming lead.\n\nSteps:\n1. In Flow C, click \"Generate handoff for current shift.\"\n2. The copilot picks the shift with the most recent downtime activity today and builds the note from computed facts: orders scheduled, complete, running, on hold, and late on that line; pieces produced against plan and scrap; downtime minutes, cost, and the biggest cause; quality holds touching the line and how many are still open; and how many stoppages still have no root cause recorded \u2014 the first thing the incoming lead should chase.\n3. You can expand the note to see the exact computed facts behind it, so anything in the handoff can be checked against the records.",
+  "id": "shift-handoff",
+  "keywords": [
+   "handoff",
+   "shift",
+   "lead",
+   "incoming",
+   "summary",
+   "end of shift",
+   "turnover"
+  ],
+  "title": "How the shift handoff works (Flow C)"
+ },
+ {
+  "body": "One rule runs through the whole app: the model never calculates. Every production figure \u2014 downtime minutes, costs, produced pieces, hold counts \u2014 is computed in deterministic code from the production records. The model only does three things: reads part photos (Flow A), structures messy descriptions into records (Flow B), and phrases computed facts into readable answers (Flow C). That is why any figure in an answer can be expanded and checked against the facts block under it.\n\nCosts are duration multiplied by the line's downtime rate: $38.50 per minute on LINE-1 and $24.75 per minute on LINE-2. If a stoppage record has no line, no rate can be applied; those events are counted in minutes and flagged explicitly as lacking a cost estimate rather than silently priced at zero.\n\nConfidence scores come from the model and mean how sure it is of that read or filing, not a guarantee. Low-confidence and unrecognized items are routed to a human instead of being forced into an answer.",
+  "id": "numbers-and-trust",
+  "keywords": [
+   "trust",
+   "numbers",
+   "calculate",
+   "math",
+   "accurate",
+   "confidence",
+   "cost",
+   "rate",
+   "uncosted",
+   "estimate",
+   "how does it work",
+   "model"
+  ],
+  "title": "Why the numbers can be trusted"
+ },
+ {
+  "body": "Every downtime record carries a class and a cause code from a fixed plant taxonomy, so stoppages can be trended instead of buried in free text.\n\nCause codes:\n- EQ-BRK Breakdown\n- EQ-JAM Jam\n- EQ-WEAR Tooling wear\n- EQ-OVHT Overheat\n- MAT-OUT Stock-out\n- MAT-DEF Defective material\n- MAT-LATE Late delivery\n- QL-HOLD Quality hold\n- QL-REWK Rework loop\n- OP-ABS Operator unavailable\n- UT-PWR Power dip\n- IT-SYS System / tablet down\n- PL-CHG Changeover\n- PL-PM Planned maintenance\n- PL-BRK No-order gap\n\nClasses group the causes: unplanned_equipment (EQ-BRK, EQ-JAM, EQ-WEAR, EQ-OVHT), unplanned_material (MAT-OUT, MAT-DEF, MAT-LATE), unplanned_quality (QL-HOLD, QL-REWK), unplanned_people_other (OP-ABS, UT-PWR, IT-SYS), and planned (PL-CHG, PL-PM, PL-BRK).\n\nEquipment at Riverbend: LINE-1 runs PRESS-101, FORM-102, and QC-103; LINE-2 runs ASM-201, TORQ-202, and PACK-203.",
+  "id": "cause-codes",
+  "keywords": [
+   "cause",
+   "code",
+   "codes",
+   "taxonomy",
+   "class",
+   "classes",
+   "eq-jam",
+   "eq-brk",
+   "changeover",
+   "categories",
+   "labels"
+  ],
+  "title": "Downtime cause codes and classes"
+ },
+ {
+  "body": "All data in this demo is synthetic. Riverbend Fabrication is a fictional two-line metal-fabrication plant. The dataset (30 days of orders, downtime events, inspections, and quality holds) is generated by a seeded script (seed 42), so it is fully reproducible, and its shapes follow public ISA-88 / ISA-95 concepts: site, areas, work centers (LINE-1, LINE-2), and work units (PRESS-101, FORM-102, QC-103, ASM-201, TORQ-202, PACK-203).\n\nThe demo's \"today\" is the final day of the dataset, and \"this week\" and \"this month\" are counted back from that day, so the numbers are stable whenever you open the app. Stoppages you file in Flow B are added to the live event list for the session and counted in the snapshot and answers immediately.\n\nClean-room note: no employer or client code, data, screenshots, or documents were used or derived from. Everything here is original and synthetic.",
+  "id": "demo-data",
+  "keywords": [
+   "data",
+   "synthetic",
+   "fake",
+   "real",
+   "seed",
+   "riverbend",
+   "isa",
+   "dataset",
+   "demo",
+   "today",
+   "dates"
+  ],
+  "title": "About the demo data"
+ },
+ {
+  "body": "Common issues and what they mean:\n\n- \"The production data on hand does not cover that question\" (Flow C): the question is outside what the dataset can answer. Try one of the suggested questions; the covered topics are downtime and cost by line and window, order status (including by PO number), orders late/on hold/running, and quality holds.\n\n- Photo upload rejected or too large: use a standard image file (JPEG or PNG) and a smaller photo if the file is very large. If a photo is accepted but the part is not recognized, the verdict will be flag/hold for a human \u2014 that is deliberate, not an error.\n\n- A filed stoppage shows no cost: the line could not be determined from the description, so no downtime rate was applied. The record is labeled \"needs line/equipment confirmation\" and its minutes still count; naming the line in the description fixes it next time.\n\n- A verdict or answer shows an error message: the model call failed at that moment (for example a network or service interruption). Nothing was filed or recorded from a failed call; wait a few seconds and try again.\n\n- The snapshot numbers changed after filing: that is expected \u2014 records filed in Flow B join the live event list and are counted right away.",
+  "id": "troubleshooting",
+  "keywords": [
+   "error",
+   "failed",
+   "not working",
+   "problem",
+   "photo rejected",
+   "too large",
+   "not covered",
+   "no answer",
+   "missing",
+   "wrong",
+   "help"
+  ],
+  "title": "Troubleshooting"
+ },
+ {
+  "id": "plant-setup",
+  "title": "Setting up your own plant",
+  "keywords": [
+   "own plant",
+   "setup",
+   "set up",
+   "customize",
+   "my plant",
+   "plant name",
+   "rates",
+   "equipment names",
+   "configure",
+   "profile",
+   "your plant"
+  ],
+  "body": "The Your Plant card (between the snapshot and Flow A) lets you make the copilot yours.\n\nSteps:\n1. Enter your plant name.\n2. For each of the two lines, set the line's name, its downtime cost per minute in dollars, and its equipment names (comma separated, up to 8 per line).\n3. Click \"Save my plant.\"\n\nWhat changes right away: the header and snapshot use your plant and line names; new stoppages filed in Flow B are matched against your equipment and costed at your rates; Ask Production cites your rates as the costing basis.\n\nHonest boundaries: the seeded history in this demo (30 days of orders, downtime, and holds) stays Riverbend Fabrication's \u2014 your profile shapes everything filed from the moment you save, it does not rewrite the seeded past. The profile is saved on this demo server and resets when the service restarts. Loading a plant's full own dataset (its real orders and history) is the product's next step; see \"What MES Copilot is for, and what comes next.\"\n\nTo go back, click \"Back to the Riverbend demo plant.\""
+ },
+ {
+  "body": "MES Copilot is built for the plants enterprise MES leaves behind: shops under a few hundred people whose production knowledge lives in operators' heads and free-text notes. It is the seed of a One Cube Up product \u2014 downtime intelligence first, then quality assist \u2014 designed so the same three flows can be pointed at a real plant's own data, with the taxonomy, downtime rates, and plant hierarchy configured per plant.\n\nNext steps after this demo: pilot conversations with small manufacturers, a real-photo QC evaluation set (moving Vision QC from synthetic samples toward real parts, with the same demo-grade honesty until it earns more), and full per-plant datasets. A first step is already built into this demo: the Your Plant setup (see \"Setting up your own plant\") lets a user put in their own plant name, line names, downtime rates, and equipment, and everything filed afterward is costed and labeled their way.\n\nMES Copilot was built by Tr\u00e9 Wright of One Cube Up LLC, who led MES teams on greenfield plant launches.",
+  "id": "whats-next",
+  "keywords": [
+   "next",
+   "roadmap",
+   "product",
+   "price",
+   "pricing",
+   "buy",
+   "pilot",
+   "real plant",
+   "one cube up",
+   "who built",
+   "contact",
+   "future"
+  ],
+  "title": "What MES Copilot is for, and what comes next"
+ }
+]
